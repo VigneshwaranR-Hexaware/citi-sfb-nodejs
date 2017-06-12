@@ -1,32 +1,16 @@
 {
-  "name": "citi-sfb-nodejs",
+  "name": "weather-bot",
   "version": "1.0.0",
-  "description": "This is to test out Chatbots for Skype for Business using Microsoft Bot Framework",
-  "main": "app.js",
-  "dependencies": {
-    "api-ai-recognizer": "^1.1.1",
-    "bluebird": "^3.4.7",
-    "botbuilder": "^3.7.0",
-    "dotenv-extended": "^1.0.4",
-    "express": "^4.15.3",
-    "request": "^2.81.0",
-    "restify": "^4.3.0"
-  },
-  "devDependencies": {},
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "node app.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/pourabkarchaudhuri/citi-sfb-nodejs.git"
-  },
-  "keywords": [
-    "skype"
-  ],
-  "author": "Pourab Karchaudhuri",
+  "author": "",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/pourabkarchaudhuri/citi-sfb-nodejs/issues"
-  },
-  "homepage": "https://github.com/pourabkarchaudhuri/citi-sfb-nodejs#readme"
+  "dependencies": {
+    "api-ai-recognizer": "^1.0.1",
+    "botbuilder": "^3.4.4",
+    "request": "^2.79.0"
+  }
 }
