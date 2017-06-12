@@ -1,30 +1,32 @@
 {
-  "name": "botbuilder-sample-luis",
+  "name": "citi-sfb-nodejs",
   "version": "1.0.0",
-  "description": "Bot Builder Sample - LUIS",
-  "scripts": {
-    "start": "node app.js"
-  },
-  "author": "Microsoft Corp.",
-  "license": "MIT",
-  "keywords": [
-    "botbuilder",
-    "bots",
-    "chatbots",
-    "botbuilder-samples"
-  ],
-  "bugs": {
-    "url": "https://github.com/Microsoft/BotBuilder-Samples/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Microsoft/BotBuilder-Samples.git"
-  },
+  "description": "This is to test out Chatbots for Skype for Business using Microsoft Bot Framework",
+  "main": "app.js",
   "dependencies": {
+    "api-ai-recognizer": "^1.1.1",
+    "express": "^4.15.3",
     "bluebird": "^3.4.7",
     "botbuilder": "^3.7.0",
     "dotenv-extended": "^1.0.4",
     "request": "^2.79.0",
     "restify": "^4.3.0"
-  }
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pourabkarchaudhuri/citi-sfb-nodejs.git"
+  },
+  "keywords": [
+    "skype"
+  ],
+  "author": "Pourab Karchaudhuri",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pourabkarchaudhuri/citi-sfb-nodejs/issues"
+  },
+  "homepage": "https://github.com/pourabkarchaudhuri/citi-sfb-nodejs#readme"
 }
