@@ -148,7 +148,7 @@ function startNewConversation(add){
 
 }
 
-//
+
 // bot.dialog('survey', [
 //     function (session) {
 //         builder.Prompts.text(session, 'Hello... What\'s your name?');
