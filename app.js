@@ -39,11 +39,11 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                 .matches('WebhookIntent', [
                 function (session, args, next) {
                     console.log("Webhook Intent Called");
-                    console.log("Args : "+args);
+                    console.log("Args : "+JSON.stringify(args));
 
                     global.savedAddress = session.message.address;
 
-                    console.log("savedAddress : "+savedAddress);
+                    //console.log("savedAddress : "+savedAddress);
                     session.send('Webhook Intent Called API.AI');
                     session.endDialog();
                 }
@@ -53,7 +53,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                     function (session, args, next) {
                        //session.send('Inquiry Intent Called API.AI', session.message.text);
                        console.log("Test Intent Fired");
-                       console.log("Args : "+args);
+                       console.log("Args : "+JSON.stringify(args));
                         //console.log("New Conversation Intent Called 1.0");
                         session.send('Test Intent Response from API.AI')
                         //global.savedAddress = session.message.address;
@@ -64,7 +64,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                 .matches('inquiryIntent', [
                     function (session, args, next) {
                        console.log("Inquiry Intent Called");
-                       console.log("Args : "+args);
+                      console.log("Args : "+JSON.stringify(args));
                        session.send('Inquiry Intent Called API.AI');
 
                   }
