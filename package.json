@@ -1,5 +1,5 @@
 {
-  "name": "Citi Microstrategy Assistant",
+  "name": "CitiMicrostrategyAssistant",
   "version": "1.0.0",
   "description": "Sample SFB Bot for Citi Microstrategy",
   "main": "index.js",
