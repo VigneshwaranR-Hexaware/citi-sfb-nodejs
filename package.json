@@ -1,12 +1,12 @@
 {
-  "name": "weather-bot",
+  "name": "Citi Microstrategy Assistant",
   "version": "1.0.0",
-  "description": "",
+  "description": "Sample SFB Bot for Citi Microstrategy",
   "main": "index.js",
   "scripts": {
     "start": "index app.js"
   },
-  "author": "",
+  "author": "Pourab Karchaudhuri",
   "license": "ISC",
   "dependencies": {
     "api-ai-recognizer": "^1.1.1",
