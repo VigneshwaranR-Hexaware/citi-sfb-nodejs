@@ -47,7 +47,7 @@ intents.matches('WebhookIntent', [
 intents.matches('inquiryIntent', [
     function (session, args, next) {
       console.log("Webhook Intent Triggered");
-      console.log("Args : "+args);
+      console.log("Args : "+JSON.stringify(args));
       session.send('Inquiry Intent Called API.AI', session.message.text);
 
     }//Response for inquiry Intent Returned
