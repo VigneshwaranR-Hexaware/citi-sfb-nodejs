@@ -37,7 +37,7 @@ intents.matches('WebhookIntent', [
     function (session, args, next) {
        //savedAddress = session.message.address;
        global.savedAddress = session.message.address;
-
+       console.log("Global Saved Address  : "+session.message.address);
        console.log("Webhook Intent Triggered");
        console.log("Args : "+JSON.stringify(args));
        session.send('Webhook Intent Called API.AI', session.message.text);
@@ -61,7 +61,7 @@ intents.matches('inquiryIntent', [
 server.get('/', (req, res, next) => {
     var savedAddress=global.savedAddress;
     sendProactiveMessage(savedAddress);
-    res.send('triggered');
+    res.send('Notification Trigger Successful');
     next();
   }
 );//GET call response sent on HTTP GET calls the Postback URL
@@ -71,5 +71,6 @@ function sendProactiveMessage(address) {
   var msg = new builder.Message().address(address);
   msg.text('Hello, this is a notification');
   msg.textLocale('en-US');
+  console.log("msg : "+msg);
   bot.send(msg);
 }
