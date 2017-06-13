@@ -28,7 +28,7 @@ var recognizer = new apiairecognizer('2ce0da1c25354c2bb16ef5cb0f61e43f');
 bot.recognizer(recognizer);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 
-bot.dialog('/', intents); //Listening to messages as Query Parameters with POST call
+bot.dialog('/api/messages', intents); //Listening to messages as Query Parameters with POST call
 
 console.log("Intent----"+JSON.stringify(intents));
 
@@ -47,7 +47,7 @@ intents.matches('inquiryIntent', [
     function (session, args, next) {
       console.log("Webhook Intent Triggered");
       console.log("Args : "+args);
-      bot.send('Inquiry Intent Called API.AI', session.message.text);
+      session.send('Inquiry Intent Called API.AI', session.message.text);
 
     }//Response for inquiry Intent Returned
 ]);
