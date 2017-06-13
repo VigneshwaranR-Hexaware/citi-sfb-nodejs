@@ -37,7 +37,7 @@ intents.matches('WebhookIntent', [
     function (session, args, next) {
        //savedAddress = session.message.address;
        console.log("Webhook Intent Triggered");
-       console.log("Args : "+args);
+       console.log("Args : "+JSON.stringify(args));
        bot.send('Exit Intent Called API.AI', session.message.text);
 
     }//Response for Webhook Intent Returned
