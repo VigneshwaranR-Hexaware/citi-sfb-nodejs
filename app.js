@@ -69,7 +69,7 @@ server.get('/', (req, res, next) => {
 
 function sendProactiveMessage(address) {
   var msg = new builder.Message().address(address);
-  msg.text('Hello, this is a notification');
+  msg.text('Hello, this is an external notification. Hence, Proactive Messaging Successful');
   msg.textLocale('en-US');
   console.log("msg : "+msg);
   bot.send(msg);
