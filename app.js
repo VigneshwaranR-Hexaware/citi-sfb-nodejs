@@ -5,7 +5,7 @@ var restify = require('restify');
 var apiairecognizer = require('api-ai-recognizer');
 //Dependencies
 
-var savedAddress; //Variable to save the session address of user for Proactive messaging
+//var savedAddress; //Variable to save the session address of user for Proactive messaging
 
 
 // Setup Restify Server
@@ -59,15 +59,16 @@ intents.matches('inquiryIntent', [
 
 
 server.get('/', (req, res, next) => {
-    sendProactiveMessage(global.savedAddress);
+    var savedAddress=global.savedAddress;
+    sendProactiveMessage(savedAddress);
     res.send('triggered');
     next();
   }
 );//GET call response sent on HTTP GET calls the Postback URL
 
 
-function sendProactiveMessage(global.address) {
-  var msg = new builder.Message().address(global.address);
+function sendProactiveMessage(address) {
+  var msg = new builder.Message().address(address);
   msg.text('Hello, this is a notification');
   msg.textLocale('en-US');
   bot.send(msg);
