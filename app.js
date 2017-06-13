@@ -28,6 +28,7 @@ var recognizer = new apiairecognizer('2ce0da1c25354c2bb16ef5cb0f61e43f');
 bot.recognizer(recognizer);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] });
 
+console.log("Getting Ready");
 bot.dialog('/api/messages', intents); //Listening to messages as Query Parameters with POST call
 
 console.log("Intent----"+JSON.stringify(intents));
