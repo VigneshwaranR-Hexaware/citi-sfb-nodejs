@@ -37,7 +37,7 @@ intents.matches('WebhookIntent', [
        //savedAddress = session.message.address;
        console.log("Webhook Intent Triggered");
        console.log("Args : "+args);
-       session.send('Exit Intent Called API.AI', session.message.text);
+       bot.send('Exit Intent Called API.AI', session.message.text);
 
     }//Response for Webhook Intent Returned
 ]),
@@ -47,7 +47,7 @@ intents.matches('inquiryIntent', [
     function (session, args, next) {
       console.log("Webhook Intent Triggered");
       console.log("Args : "+args);
-      session.send('Inquiry Intent Called API.AI', session.message.text);
+      bot.send('Inquiry Intent Called API.AI', session.message.text);
 
     }//Response for inquiry Intent Returned
 ]);
