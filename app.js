@@ -3,6 +3,7 @@ require('dotenv-extended').load();
 var builder = require('botbuilder');
 var restify = require('restify');
 var apiairecognizer = require('api-ai-recognizer');
+var request = require("request");
 //Dependencies
 
 var savedAddress;
@@ -43,9 +44,99 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
                     global.savedAddress = session.message.address;
 
+                    var reportId='EA8836BF451BF05F9B9A08A9D2EB44C2';
+
+                    var options = { method: 'POST',
+                      url: 'http://52.3.221.183:1234/json-data-api/sessions',
+                      headers:
+                      { 'postman-token': 'ffbe2e8a-6732-e2dc-357a-4e7b77afa663',
+                         'cache-control': 'no-cache',
+                         accept: 'application/vnd.mstr.dataapi.v0+json',
+                         'content-type': 'application/json',
+                         'x-authmode': '1',
+                         'x-username': 'administrator',
+                         'x-projectname': 'Hello World',
+                         'x-port': '34952',
+                         'x-iservername': 'localhost' } };
+
+                    request(options, reportId, session, function (error, response, body) {
+                      if (error) throw new Error(error);
+
+
+                      var tokenObtained=JSON.parse(body).authToken;
+                      console.log("Token : "+tokenObtained);
+                      console.log("Report ID : "+reportId);
+                      //Get Auth Token
+                      generateReportData(tokenObtained,reportId,session);
+                      //Get Report
+
+                    });
+
+                    function generateReportData(authTokenRecieved,reportIdentifier,session){
+
+                        console.log("Inside Passing Function : "+authTokenRecieved);
+
+                        console.log("Auth Token : "+authTokenRecieved);
+                        var options = { method: 'POST',
+                          url: 'http://52.3.221.183:1234/json-data-api/reports/'+reportIdentifier+'/instances',
+                          qs: { offset: '0', limit: '1000' },
+                          headers:
+                          { 'postman-token': 'bcb857d0-8c81-47e4-47fc-97f53abc5816',
+                             'cache-control': 'no-cache',
+                             'x-mstr-authtoken': authTokenRecieved,
+                             accept: 'application/vnd.mstr.dataapi.v0+json',
+                             'content-type': 'application/vnd.mstr.dataapi.v0+json' } };
+
+                        request(options,session, function (error, response, body) {
+                          if (error) throw new Error(error);
+
+                          var array=[];
+                          var arrayString="";
+                          console.log("Complete : "+JSON.stringify(JSON.parse(body).result.definition.attributes));
+                          var attributeLength=JSON.parse(body).result.definition.attributes.length;
+                          console.log("Attributes Length : "+attributeLength);
+
+                          for(var i=0;i<attributeLength;i++){
+                              var attributeParams = JSON.parse(body).result.definition.attributes[i].name.substring(JSON.parse(body).result.definition.attributes[i].name.indexOf(".")+1);
+                              array.push(attributeParams);
+                              arrayString=arrayString+""+attributeParams+" ";
+
+                          }
+                          console.log(arrayString);
+                          arrayString = arrayString.substring(0, arrayString.length-1);
+                          arrayString=arrayString.replace(/\s+/g, ", ");
+                          arrayString=arrayString.replace(/,(?=[^,]*$)/, ' and');
+                          console.log(arrayString);
+                          var reportNameDetail = JSON.parse(body).result.definition.attributes[0].name.substring(0,JSON.parse(body).result.definition.attributes[0].name.indexOf("."));
+                          console.log(reportNameDetail);
+
+                          var responseString="This is a "+reportNameDetail+" for "+arrayString+" attributes";
+                          console.log(responseString);
+                          session.send(responseString);
+                          session.endDialog();
+                        //   console.log("No of Records in Report : "+JSON.parse(body).result.data.root.children.length);
+                        //   var bodyLength=JSON.parse(body).result.data.root.children.length;
+
+                        //     for(var i=0;i<bodyLength;i++)
+                        //     {
+                        //         var responseOutput="Name of Candidate : "+JSON.parse(body).result.data.root.children[i].element.name+"\n"+"Candidate ID : "+JSON.parse(body).result.data.root.children[i].element.id+"\n"+"Candidate Metrics Real Value : "+JSON.parse(body).result.data.root.children[i].metrics.age.rv+"\n"+"Candidate Metrics Face Value : "+JSON.parse(body).result.data.root.children[i].metrics.age.fv+"\n";
+                        //         console.log(responseOutput);
+
+                        //         // console.log("--------------------------------------------------");
+                        //         // console.log("Name of Candidate : "+JSON.parse(body).result.data.root.children[i].element.name);
+                        //         // console.log("Candidate ID : "+JSON.parse(body).result.data.root.children[i].element.id);
+                        //         // console.log("Candidate Metrics Real Value : "+JSON.parse(body).result.data.root.children[i].metrics.age.rv);
+                        //         // console.log("Candidate Metrics Face Value : "+JSON.parse(body).result.data.root.children[i].metrics.age.fv);
+                        //     }
+                        });
+
+                    }
+                    //Auth Token Generator
+                    //----------------------------------------------------------------------
+
                     //console.log("savedAddress : "+savedAddress);
-                    session.send('Webhook Intent Called API.AI');
-                    session.endDialog();
+                    // session.send('Webhook Intent Called API.AI');
+                    // session.endDialog();
                 }
               ])//Webhook Intent Fired
 
