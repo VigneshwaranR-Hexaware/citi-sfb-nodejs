@@ -160,16 +160,26 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                     function (session, args, next) {
                       console.log("Report Specific Data Intent Called");
                       console.log("Args : "+JSON.stringify(args));
+
+                      var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
+                      console.log("Entity Lot : "+JSON.stringify(entityObtained));
+                      var entityValue=entityObtained.entity;
+                      global.entityValue=entityValue;
+                      console.log("Entity Value : "+entityValue);
+
                       if(global.verifyFlag==0){
-                        var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
-                        console.log("Entity Lot : "+entityObtained);
-                        var entityValue=entityObtained.entity;
-                        console.log("Entity Value : "+entityValue);
 
+                        console.log("Not Verified Yet. Global Verify Flag : "+global.verifyFlag);
+                        var responseString="Please give me the report ID";
+                        session.send(responseString);
 
-                      var responseString="Please give me the report ID";
-                      session.send(responseString);
-                    }//FIRE when Verification ID not given.
+                      }//FIRE when Verification ID not given.
+
+                      else if(global.verifyFlag==1){
+
+                          console.log("Verified. Global Verify Flag : "+global.verifyFlag);
+
+                      }//FIRE when Verification is complete
                  }
                 ])//Inquiry Intent Fired
 
