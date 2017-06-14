@@ -161,9 +161,9 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       console.log("Report Specific Data Intent Called");
                       console.log("Args : "+JSON.stringify(args));
                       if(global.verifyFlag==0){
-                        var entity = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
-                        console.log("Entity Lot : "+entity);
-                        var entityValue=securityEntity.entity;
+                        var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
+                        console.log("Entity Lot : "+entityObtained);
+                        var entityValue=entityObtained.entity;
                         console.log("Entity Value : "+entityValue);
 
 
