@@ -72,7 +72,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       generateReportData(tokenObtained,reportId, function(responseString){
                           console.log(responseString);
                           //console.log("savedAddress : "+savedAddress);
-                          session.send('Webhook Intent Called API.AI');
+                          session.send(responseString);
                           session.endDialog();
 
                       });
