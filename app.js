@@ -125,13 +125,8 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                           callback(responseString);
 
                         });
-
                     }
-                    //Auth Token Generator
-                    //----------------------------------------------------------------------
-
-
-                }
+                  }
               ])//Webhook Intent Fired
 
                 .matches('DefaultWelcomeIntent', [
@@ -182,7 +177,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                 .onDefault((session) => {
                         console.log("I'm sorry, I didn't understand that.");
                         session.send("FallbackIntent").endDialog();
-                  //Fallback Intent Fired
+                  //Default Fallback Intent Fired
 });
 
 bot.dialog('/', intents);
