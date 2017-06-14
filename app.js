@@ -119,7 +119,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                     }
                     //Auth Token Generator
                     //----------------------------------------------------------------------
-                    console.log(responseString);
+                    //console.log(responseString);
                     //console.log("savedAddress : "+savedAddress);
                     session.send('Webhook Intent Called API.AI');
                     session.endDialog();
