@@ -38,6 +38,7 @@ bot.recognizer(recognizer);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
                 .matches('WebhookIntent', [
+
                 function (session, args, next) {
                     console.log("Webhook Intent Called");
                     console.log("Args : "+JSON.stringify(args));
@@ -67,12 +68,18 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       console.log("Token : "+tokenObtained);
                       console.log("Report ID : "+reportId);
                       //Get Auth Token
-                      generateReportData(tokenObtained,reportId,session);
+                      generateReportData(tokenObtained,reportId, function(){
+                          console.log(responseString);
+                          //console.log("savedAddress : "+savedAddress);
+                          session.send('Webhook Intent Called API.AI');
+                          session.endDialog();
+
+                      });
                       //Get Report
 
                     });
 
-                    function generateReportData(authTokenRecieved,reportIdentifier){
+                    function generateReportData(authTokenRecieved,reportIdentifier, callback){
 
                         console.log("Inside Passing Function : "+authTokenRecieved);
 
@@ -112,18 +119,17 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
                           var responseString="This is a "+reportNameDetail+" for "+arrayString+" attributes";
                           console.log(responseString);
-                          global.responseString=responseString;
                           console.log("SESSION");
+
+                          callback(responseString);
 
                         });
 
                     }
                     //Auth Token Generator
                     //----------------------------------------------------------------------
-                    console.log(global.responseString);
-                    //console.log("savedAddress : "+savedAddress);
-                    session.send('Webhook Intent Called API.AI');
-                    session.endDialog();
+
+
                 }
               ])//Webhook Intent Fired
 
