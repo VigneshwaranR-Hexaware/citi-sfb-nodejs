@@ -67,7 +67,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       console.log("Token : "+tokenObtained);
                       console.log("Report ID : "+reportId);
                       //Get Auth Token
-                      generateReportData(tokenObtained,reportId,session);
+                      //generateReportData(tokenObtained,reportId,session);
                       //Get Report
 
                     });
