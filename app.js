@@ -168,7 +168,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       console.log("Report Specific Data Intent Called");
                       console.log("Args : "+JSON.stringify(args));
                       var responseString="Please enter the report ID";
-                      session.send(responseString);
+                      session.send(responseString);//
 
                   }
                 ])//Inquiry Intent Fired
