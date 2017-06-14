@@ -159,13 +159,16 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                         //global.savedAddress = session.message.address;
                         //startNewConversation(savedAddress);
                   }
-                ])//test Intent Fired
+                ])//Capabilities Intent Fired
 
-                .matches('inquiryIntent', [
+                .matches('ReportSpecificDataInquiryIntent', [
                     function (session, args, next) {
-                       console.log("Inquiry Intent Called");
+                      if(global.verifyFlag==0){
+
+                      console.log("Report Specific Data Intent Called");
                       console.log("Args : "+JSON.stringify(args));
-                       session.send('Inquiry Intent Called API.AI');
+                      var responseString="Please enter the report ID";
+                      session.send(responseString);
 
                   }
                 ])//Inquiry Intent Fired
