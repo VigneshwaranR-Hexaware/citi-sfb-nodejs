@@ -163,14 +163,18 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
                 .matches('ReportSpecificDataInquiryIntent', [
                     function (session, args, next) {
-                      if(global.verifyFlag==0){
-
                       console.log("Report Specific Data Intent Called");
                       console.log("Args : "+JSON.stringify(args));
-                      var responseString="Please enter the report ID";
-                      session.send(responseString);//
+                      if(global.verifyFlag==0){
+                        var entity = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
+                        console.log("Entity Lot : "+entity);
+                        var entityValue=securityEntity.entity;
+                        console.log("Entity Value : "+entityValue);
 
-                  }
+
+                      var responseString="Please give me the report ID";
+                      session.send(responseString);
+                    }//FIRE when Verification ID not given.
                  }
                 ])//Inquiry Intent Fired
 
