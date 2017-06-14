@@ -37,7 +37,7 @@ bot.recognizer(recognizer);
 
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
-                .matches('WebhookIntent', [
+                .matches('AttributeIntent', [
 
                 function (session, args, next) {
                     console.log("Webhook Intent Called");
