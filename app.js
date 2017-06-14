@@ -134,13 +134,28 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                 }
               ])//Webhook Intent Fired
 
-                .matches('testIntent', [
+                .matches('DefaultWelcomeIntent', [
                     function (session, args, next) {
+                      global.verifyFlag=0;
                        //session.send('Inquiry Intent Called API.AI', session.message.text);
-                       console.log("Test Intent Fired");
+                       console.log("Welcome Intent Fired");
                        console.log("Args : "+JSON.stringify(args));
                         //console.log("New Conversation Intent Called 1.0");
-                        session.send('Test Intent Response from API.AI')
+                        var responseString="Hi there. I am Citi Assistant. How can I help you?"
+                        session.send(responseString);
+                        //global.savedAddress = session.message.address;
+                        //startNewConversation(savedAddress);
+                  }
+                ])//Welcome Intent Fired
+
+                .matches('CapabilitiesIntent', [
+                    function (session, args, next) {
+                       //session.send('Inquiry Intent Called API.AI', session.message.text);
+                       console.log("Capabilities Intent Fired");
+                       console.log("Args : "+JSON.stringify(args));
+                        //console.log("New Conversation Intent Called 1.0");
+                        var responseString="I can give you information of a report from Microstrategy data. You can just ask me for any specific type of data and I'll get it for you."
+                        session.send(responseString);
                         //global.savedAddress = session.message.address;
                         //startNewConversation(savedAddress);
                   }
@@ -157,7 +172,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
 
                 .onDefault((session) => {
-                        console.log("Fallback Intent Fired");
+                        console.log("I'm sorry, I didn't understand that.");
                         session.send("FallbackIntent").endDialog();
                   //Fallback Intent Fired
 });
