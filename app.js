@@ -171,6 +171,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       session.send(responseString);//
 
                   }
+                 }
                 ])//Inquiry Intent Fired
 
 
