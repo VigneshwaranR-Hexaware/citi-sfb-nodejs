@@ -118,7 +118,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                           var reportNameDetail = JSON.parse(body).result.definition.attributes[0].name.substring(0,JSON.parse(body).result.definition.attributes[0].name.indexOf("."));
                           console.log(reportNameDetail);
 
-                          var responseString="This is a "+reportNameDetail+" for "+arrayString+" attributes";
+                          var responseString="This is a "+reportNameDetail+" for the respective "+arrayString+" attributes";
                           console.log(responseString);
                           console.log("SESSION");
 
