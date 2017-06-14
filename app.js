@@ -58,7 +58,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                          'x-projectname': 'Hello World',
                          'x-port': '34952',
                          'x-iservername': 'localhost' } };
-
+                         console.log("Triggering POST call for Session Generation");
                     request(options, reportId, session, function (error, response, body) {
                       if (error) throw new Error(error);
 
