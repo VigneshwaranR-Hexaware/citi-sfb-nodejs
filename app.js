@@ -59,7 +59,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                          'x-port': '34952',
                          'x-iservername': 'localhost' } };
                          console.log("Triggering POST call for Session Generation");
-                    request(options, reportId, session, function (error, response, body) {
+                    request(options, reportId, function (error, response, body) {
                       if (error) throw new Error(error);
 
 
@@ -72,7 +72,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
                     });
 
-                    function generateReportData(authTokenRecieved,reportIdentifier,session){
+                    function generateReportData(authTokenRecieved,reportIdentifier){
 
                         console.log("Inside Passing Function : "+authTokenRecieved);
 
@@ -87,7 +87,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                              accept: 'application/vnd.mstr.dataapi.v0+json',
                              'content-type': 'application/vnd.mstr.dataapi.v0+json' } };
 
-                        request(options,session, function (error, response, body) {
+                        request(options, function (error, response, body) {
                           if (error) throw new Error(error);
 
                           var array=[];
@@ -112,31 +112,17 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
                           var responseString="This is a "+reportNameDetail+" for "+arrayString+" attributes";
                           console.log(responseString);
-                          session.send(responseString);
-                          session.endDialog();
-                        //   console.log("No of Records in Report : "+JSON.parse(body).result.data.root.children.length);
-                        //   var bodyLength=JSON.parse(body).result.data.root.children.length;
+                          console.log("SESSION");
 
-                        //     for(var i=0;i<bodyLength;i++)
-                        //     {
-                        //         var responseOutput="Name of Candidate : "+JSON.parse(body).result.data.root.children[i].element.name+"\n"+"Candidate ID : "+JSON.parse(body).result.data.root.children[i].element.id+"\n"+"Candidate Metrics Real Value : "+JSON.parse(body).result.data.root.children[i].metrics.age.rv+"\n"+"Candidate Metrics Face Value : "+JSON.parse(body).result.data.root.children[i].metrics.age.fv+"\n";
-                        //         console.log(responseOutput);
-
-                        //         // console.log("--------------------------------------------------");
-                        //         // console.log("Name of Candidate : "+JSON.parse(body).result.data.root.children[i].element.name);
-                        //         // console.log("Candidate ID : "+JSON.parse(body).result.data.root.children[i].element.id);
-                        //         // console.log("Candidate Metrics Real Value : "+JSON.parse(body).result.data.root.children[i].metrics.age.rv);
-                        //         // console.log("Candidate Metrics Face Value : "+JSON.parse(body).result.data.root.children[i].metrics.age.fv);
-                        //     }
                         });
 
                     }
                     //Auth Token Generator
                     //----------------------------------------------------------------------
-
+                    console.log(responseString);
                     //console.log("savedAddress : "+savedAddress);
-                    // session.send('Webhook Intent Called API.AI');
-                    // session.endDialog();
+                    session.send('Webhook Intent Called API.AI');
+                    session.endDialog();
                 }
               ])//Webhook Intent Fired
 
