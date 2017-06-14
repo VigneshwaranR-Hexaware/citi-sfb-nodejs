@@ -112,6 +112,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
                           var responseString="This is a "+reportNameDetail+" for "+arrayString+" attributes";
                           console.log(responseString);
+                          global.responseString=responseString;
                           console.log("SESSION");
 
                         });
@@ -119,7 +120,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                     }
                     //Auth Token Generator
                     //----------------------------------------------------------------------
-                    console.log(responseString);
+                    console.log(global.responseString);
                     //console.log("savedAddress : "+savedAddress);
                     session.send('Webhook Intent Called API.AI');
                     session.endDialog();
