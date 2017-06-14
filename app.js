@@ -60,6 +60,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                          'x-port': '34952',
                          'x-iservername': 'localhost' } };
                          console.log("Triggering POST call for Session Generation");
+
                     request(options, reportId, function (error, response, body) {
                       if (error) throw new Error(error);
 
@@ -68,7 +69,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       console.log("Token : "+tokenObtained);
                       console.log("Report ID : "+reportId);
                       //Get Auth Token
-                      generateReportData(tokenObtained,reportId, function(){
+                      generateReportData(tokenObtained,reportId, function(responseString){
                           console.log(responseString);
                           //console.log("savedAddress : "+savedAddress);
                           session.send('Webhook Intent Called API.AI');
