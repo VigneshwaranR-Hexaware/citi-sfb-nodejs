@@ -192,7 +192,7 @@ bot.dialog('/', intents);
                              'x-iservername': 'localhost' } };
                              console.log("Triggering POST call for Session Generation");
 
-                        request(options, reportId, entityValue, function (error, response, body) {
+                        request(options, reportId, function (error, response, body) {
                           if (error) throw new Error(error);
 
 
@@ -200,7 +200,7 @@ bot.dialog('/', intents);
                           console.log("Token : "+tokenObtained);
                           console.log("Report ID : "+reportId);
                           //Get Auth Token
-                          generateReportData(tokenObtained,reportId,entityValue, function(responseString){
+                          generateReportData(tokenObtained, reportId, function(responseString){
                               console.log(responseString);
                               //console.log("savedAddress : "+savedAddress);
                               session.send(responseString);
@@ -212,7 +212,7 @@ bot.dialog('/', intents);
                          });
                         }
 
-                        function generateReportData(authTokenRecieved,reportIdentifier,entityValueHere, callback){
+                        function generateReportData(authTokenRecieved, reportIdentifier, callback){
 
                             console.log("Inside Passing Function : "+authTokenRecieved);
                             console.log("Entity Value Inside Passing Function : "+entityValueHere);
