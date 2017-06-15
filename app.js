@@ -232,6 +232,7 @@ bot.dialog('/', intents);
 
                               var array=[];
                               var arrayString="";
+                              console.log(body);
                               console.log("Complete : "+JSON.stringify(JSON.parse(body).result.definition.attributes));
                               var attributeLength=JSON.parse(body).result.definition.attributes.length;
                               console.log("Attributes Length : "+attributeLength);
