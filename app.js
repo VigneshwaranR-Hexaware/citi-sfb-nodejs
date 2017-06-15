@@ -166,6 +166,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
                       if(entityObtained&&projectNameObtained){
 
+                        console.log("All Entities Recieved as Input from User");
                         console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
                         var entityValue=entityObtained.entity;
                         global.entityValue=entityValue;
@@ -184,6 +185,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       else{
                           console.log("Project Name not Known. Asking User to Provide");
                           builder.Prompts.text(session, 'Please tell me the Project name');
+                          console.log("Prompt Sent");
                       }//If user has not mentioned the Project name along with inquiry request
                       //SENDING PROMPT
                  },
