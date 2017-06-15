@@ -164,45 +164,45 @@ bot.dialog('/', intents);
                       console.log("Args : "+JSON.stringify(args));
 
                       var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
-                      var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
+                      // var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
 
-                      if(entityObtained&&projectNameObtained){
+                      if(entityObtained){
 
                         console.log("All Entities Recieved as Input from User");
                         console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
                         var entityValue=entityObtained.entity;
-                        //global.entityValue=entityValue;
+                        global.entityValue=entityValue;
                         console.log("Data Specific Entity Value : "+entityValue);
 
-                        console.log("Project Name Entity Lot : "+JSON.stringify(projectNameObtained));
-                        var projectValue=projectNameObtained.entity;
-                        //global.projectValue=projectValue;
-                        console.log("Project Name Entity Value : "+projectValue);
+                        // console.log("Project Name Entity Lot : "+JSON.stringify(projectNameObtained));
+                        // var projectValue=projectNameObtained.entity;
+                        // //global.projectValue=projectValue;
+                        // console.log("Project Name Entity Value : "+projectValue);
 
-                        var responseString="Here is your report on "+entityValue+" for "+projectValue;
+                        var responseString="Here is your report on "+entityValue;
                         session.send(responseString);
                         //SENDING DIRECT RESPONSE FOR ALL VALUES INCLUDED INTENT STYLE
                       }//If User says project name along with inquiry request
 
-                      else{
-                          console.log("Project Name not Known. Asking User to Provide");
-                          builder.Prompts.text(session, 'Please tell me the Project name');
-                          console.log("Prompt Sent");
-                      }//If user has not mentioned the Project name along with inquiry request
+                      // else{
+                      //     console.log("Project Name not Known. Asking User to Provide");
+                      //     builder.Prompts.text(session, 'Please tell me the Project name');
+                      //     console.log("Prompt Sent");
+                      // }//If user has not mentioned the Project name along with inquiry request
                       //SENDING PROMPT
-                 },
-                 function(session,results)
-                  {
-                      console.log("Fulfilled Specific Request Response");
-                      var projectNameObtained = results.response;
-                      console.log(session.message);
-                      console.log(results);
-                      session.send("Here is your fulfilled report for " + projectNameObtained);
-
-
-
-
-                  } //SENDING FULFILLED RESPONSE
+                 }
+                //  function(session,results)
+                //   {
+                //       console.log("Fulfilled Specific Request Response");
+                //       var projectNameObtained = results.response;
+                //       console.log(session.message);
+                //       console.log(results);
+                //       session.send("Here is your fulfilled report for " + projectNameObtained);
+                 //
+                 //
+                 //
+                 //
+                //   } //SENDING FULFILLED RESPONSE
                ]);//Specific Data Inquiry Intent Fired
 
 
