@@ -162,16 +162,25 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       console.log("Args : "+JSON.stringify(args));
 
                       var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
-                      console.log("Entity Lot : "+JSON.stringify(entityObtained));
+                      console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
                       var entityValue=entityObtained.entity;
                       global.entityValue=entityValue;
-                      console.log("Entity Value : "+entityValue);
+                      console.log("Data Specific Entity Value : "+entityValue);
 
+                      var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
+                      console.log("Project Name Entity Lot : "+JSON.stringify(projectNameObtained));
+                      var projectValue=projectNameObtained.entity;
+                      global.projectValue=projectValue;
+                      console.log("Project Name Entity Value : "+projectValue);
 
-                      var responseString="This is your report Data";
-                      session.send(responseString);
-
-
+                      if(projectValue!=undefined){
+                        var responseString="Here is your report data.";
+                        session.send(responseString);
+                      }
+                      else{
+                        var responseString="Please enter your Project Name";
+                        session.send(responseString);
+                      }
                  }
                ])//Specific Data Inquiry Intent Fired
 
