@@ -171,15 +171,15 @@ bot.dialog('/', intents);
                         console.log("All Entities Recieved as Input from User");
                         console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
                         var entityValue=entityObtained.entity;
-                        global.entityValue=entityValue;
+                        //global.entityValue=entityValue;
                         console.log("Data Specific Entity Value : "+entityValue);
 
                         console.log("Project Name Entity Lot : "+JSON.stringify(projectNameObtained));
                         var projectValue=projectNameObtained.entity;
-                        global.projectValue=projectValue;
+                        //global.projectValue=projectValue;
                         console.log("Project Name Entity Value : "+projectValue);
 
-                        var responseString="Here is your report data.";
+                        var responseString="Here is your report on "+entityValue+" for "+projectValue;
                         session.send(responseString);
                         //SENDING DIRECT RESPONSE FOR ALL VALUES INCLUDED INTENT STYLE
                       }//If User says project name along with inquiry request
@@ -194,11 +194,13 @@ bot.dialog('/', intents);
                  function(session,results)
                   {
                       console.log("Fulfilled Specific Request Response");
-                      console.log(JSON.stringify(session));
-                      console.log(JSON.stringify(next));
-                      var fulfilledProjectName=results.response;
-                      var responseString="Here is your Report for "+fulfilledProjectName;
-                      session.send(responseString);
+                      var projectNameObtained = results.response;
+                      console.log(session.message);
+                      console.log(results);
+                      session.send("Here is your fulfilled report for " + projectNameObtained);
+
+
+
 
                   } //SENDING FULFILLED RESPONSE
                ]);//Specific Data Inquiry Intent Fired

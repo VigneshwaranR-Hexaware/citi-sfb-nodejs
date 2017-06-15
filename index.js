@@ -22,48 +22,44 @@ var connector = new builder.ChatConnector({
 var connector = new builder.ConsoleConnector().listen();
 var bot = new builder.UniversalBot(connector);
 
-var recognizer = new apiairecognizer("03898b0ec44c4317b11617a27f05b61c");
+var recognizer = new apiairecognizer("2ce0da1c25354c2bb16ef5cb0f61e43f");
 var intents = new builder.IntentDialog({
          recognizers: [recognizer]
 });
 
 bot.dialog('/',intents);
 
-intents.matches('whatIsWeather',[
+intents.matches('ReportSpecificDataInquiryIntent',[
     function(session,args){
-        var city = builder.EntityRecognizer.findEntity(args.entities,'cities');
-        if (city){
-            var city_name = city.entity;
-            var url = "http://api.apixu.com/v1/current.json?key=7dd32ec48606429db78111355162912&q=" + city_name;
-            request(url,function(error,response,body){
-                body = JSON.parse(body);
-                temp = body.current.temp_c;
-                session.send("It's " + temp + " degrees celsius in " + city_name);
-            });
+        var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
+        var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
+        if (entityObtained&&projectNameObtained){
+            //var city_name = city.entity;
+
+                session.send("Here is your complete report data on "+entityObtained+" for "+projectNameObtained);
+
         }else{
-            builder.Prompts.text(session, 'Which city do you want the weather for?');
+            builder.Prompts.text(session, 'Which is the project?');
         }
     },
     function(session,results){
-        var city_name = results.response;
-        var url = "http://api.apixu.com/v1/current.json?key=7dd32ec48606429db78111355162912&q=" + city_name;
-            request(url,function(error,response,body){
-                body = JSON.parse(body);
-                temp = body.current.temp_c;
-                session.send("It's " + temp + " degrees celsius in " + city_name);
-        });
+        var entityObtained = results.response;
+                console.log(session.message);
+                console.log(results);
+                session.send("You have requested data for " + entityObtained);
+
     }
 ]);
 
-intents.matches('smalltalk.greetings',function(session, args){
-    var fulfillment = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
-    if (fulfillment){
-        var speech = fulfillment.entity;
-        session.send(speech);
-    }else{
-        session.send('Sorry...not sure how to respond to that');
-    }
-});
+// intents.matches('smalltalk.greetings',function(session, args){
+//     var fulfillment = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
+//     if (fulfillment){
+//         var speech = fulfillment.entity;
+//         session.send(speech);
+//     }else{
+//         session.send('Sorry...not sure how to respond to that');
+//     }
+// });
 
 intents.onDefault(function(session){
     session.send("Sorry...can you please rephrase?");
