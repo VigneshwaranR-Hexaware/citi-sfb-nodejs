@@ -167,23 +167,13 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       global.entityValue=entityValue;
                       console.log("Entity Value : "+entityValue);
 
-                      if(global.verifyFlag==0){
 
-                        console.log("Not Verified Yet. Global Verify Flag : "+global.verifyFlag);
-                        var responseString="Please give me the report ID";
-                        session.send(responseString);
+                      var responseString="This is your report Data";
+                      session.end(responseString);
 
-                      }//FIRE when Verification ID not given.
 
-                      else if(global.verifyFlag==1){
-
-                          console.log("Verified. Global Verify Flag : "+global.verifyFlag);
-                          var responseString="This is your report Data";
-                          session.end(responseString);
-
-                      }//FIRE when Verification is complete
                  }
-                ])//Inquiry Intent Fired
+               ])//Specific Data Inquiry Intent Fired
 
 
                 .onDefault((session) => {
