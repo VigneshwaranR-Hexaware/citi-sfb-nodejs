@@ -64,7 +64,7 @@ bot.dialog('/', intents);
                       });
                       //Get Report
 
-                    });
+                  
 
                     function generateReportData(authTokenRecieved,reportIdentifier, callback){
 
