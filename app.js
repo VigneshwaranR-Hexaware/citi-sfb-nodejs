@@ -191,12 +191,12 @@ bot.dialog('/', intents);
                       }//If user has not mentioned the Project name along with inquiry request
                       //SENDING PROMPT
                  },
-                 function(session,next)
+                 function(session,results)
                   {
                       console.log("Fulfilled Specific Request Response");
                       console.log(JSON.stringify(session));
                       console.log(JSON.stringify(next));
-                      var fulfilledProjectName=next.response;
+                      var fulfilledProjectName=results.response;
                       var responseString="Here is your Report for "+fulfilledProjectName;
                       session.send(responseString);
 
