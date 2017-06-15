@@ -234,27 +234,27 @@ bot.dialog('/', intents);
                               var array=[];
                               var arrayString="";
                               console.log(body);
-                              console.log("Complete : "+JSON.stringify(JSON.parse(body).result.definition.attributes));
-                              var attributeLength=JSON.parse(body).result.definition.attributes.length;
-                              console.log("Attributes Length : "+attributeLength);
-
-                              for(var i=0;i<attributeLength;i++){
-                                  var attributeParams = JSON.parse(body).result.definition.attributes[i].name.substring(JSON.parse(body).result.definition.attributes[i].name.indexOf(".")+1);
-                                  array.push(attributeParams);
-                                  arrayString=arrayString+""+attributeParams+" ";
-
-                              }
-                              console.log(arrayString);
-                              arrayString = arrayString.substring(0, arrayString.length-1);
-                              arrayString=arrayString.replace(/\s+/g, ", ");
-                              arrayString=arrayString.replace(/,(?=[^,]*$)/, ' and');
-                              console.log(arrayString);
-                              var reportNameDetail = JSON.parse(body).result.definition.attributes[0].name.substring(0,JSON.parse(body).result.definition.attributes[0].name.indexOf("."));
-                              console.log(reportNameDetail);
-
-                              var responseString="This is a "+reportNameDetail+" for the respective "+arrayString+" attributes from Microstrategy for Citi";
-                              console.log(responseString);
-                              console.log("SESSION");
+                              // console.log("Complete : "+JSON.stringify(JSON.parse(body).result.definition.attributes));
+                              // var attributeLength=JSON.parse(body).result.definition.attributes.length;
+                              // console.log("Attributes Length : "+attributeLength);
+                              //
+                              // for(var i=0;i<attributeLength;i++){
+                              //     var attributeParams = JSON.parse(body).result.definition.attributes[i].name.substring(JSON.parse(body).result.definition.attributes[i].name.indexOf(".")+1);
+                              //     array.push(attributeParams);
+                              //     arrayString=arrayString+""+attributeParams+" ";
+                              //
+                              // }
+                              // console.log(arrayString);
+                              // arrayString = arrayString.substring(0, arrayString.length-1);
+                              // arrayString=arrayString.replace(/\s+/g, ", ");
+                              // arrayString=arrayString.replace(/,(?=[^,]*$)/, ' and');
+                              // console.log(arrayString);
+                              // var reportNameDetail = JSON.parse(body).result.definition.attributes[0].name.substring(0,JSON.parse(body).result.definition.attributes[0].name.indexOf("."));
+                              // console.log(reportNameDetail);
+                              //
+                              // var responseString="This is a "+reportNameDetail+" for the respective "+arrayString+" attributes from Microstrategy for Citi";
+                              // console.log(responseString);
+                              // console.log("SESSION");
 
                               callback(responseString);
 
