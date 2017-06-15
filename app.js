@@ -35,11 +35,13 @@ bot.recognizer(recognizer);
 //Create Bot Object
 
 
-var intents = new builder.IntentDialog({ recognizers: [recognizer] })
+var intents = new builder.IntentDialog({ recognizers: [recognizer] });
+bot.dialog('/', intents);
 
-                .matches('AttributesIntent', [
 
-                function (session, args, next) {
+    intents.matches('AttributesIntent', [
+
+                function (session, args) {
                     console.log("Webhook Intent Called");
                     console.log("Args : "+JSON.stringify(args));
 
@@ -127,11 +129,11 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                         });
                     }
                   }
-              ])//Webhook Intent Fired
+              ]);//Webhook Intent Fired
 
-                .matches('DefaultWelcomeIntent', [
-                    function (session, args, next) {
-                      global.verifyFlag=0;
+      intents.matches('DefaultWelcomeIntent', [
+                    function (session, args) {
+                      //global.verifyFlag=0;
                        //session.send('Inquiry Intent Called API.AI', session.message.text);
                        console.log("Welcome Intent Fired");
                        console.log("Args : "+JSON.stringify(args));
@@ -141,10 +143,10 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                         //global.savedAddress = session.message.address;
                         //startNewConversation(savedAddress);
                   }
-                ])//Welcome Intent Fired
+                ]);//Welcome Intent Fired
 
-                .matches('CapabilitiesIntent', [
-                    function (session, args, next) {
+      intents.matches('CapabilitiesIntent', [
+                    function (session, args) {
                        //session.send('Inquiry Intent Called API.AI', session.message.text);
                        console.log("Capabilities Intent Fired");
                        console.log("Args : "+JSON.stringify(args));
@@ -154,9 +156,9 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                         //global.savedAddress = session.message.address;
                         //startNewConversation(savedAddress);
                   }
-                ])//Capabilities Intent Fired
+                ]);//Capabilities Intent Fired
 
-                .matches('ReportSpecificDataInquiryIntent', [
+      intents.matches('ReportSpecificDataInquiryIntent', [
                     function (session, args) {
                       console.log("Report Specific Data Intent Called");
                       console.log("Args : "+JSON.stringify(args));
@@ -199,16 +201,12 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       session.send(responseString);
 
                   } //SENDING FULFILLED RESPONSE
-               ])//Specific Data Inquiry Intent Fired
+               ]);//Specific Data Inquiry Intent Fired
 
 
-                .onDefault((session) => {
-                        console.log("I'm sorry, I didn't understand that.");
-                        session.send("FallbackIntent").endDialog();
-                  //Default Fallback Intent Fired
-});
-
-bot.dialog('/', intents);
+               intents.onDefault(function(session){
+                   session.send("Sorry...can you please rephrase?");
+               });
 
 // //console.log("INtent----"+JSON.stringify(intents));
 // bot.dialog('/profile', [
