@@ -166,16 +166,14 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       var entityValue=entityObtained.entity;
                       global.entityValue=entityValue;
                       console.log("Data Specific Entity Value : "+entityValue);
+                      var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
 
+                      if(projectNameObtained!=null){
 
-                      if(projectValue!=null){
-
-                        var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
                         console.log("Project Name Entity Lot : "+JSON.stringify(projectNameObtained));
                         var projectValue=projectNameObtained.entity;
                         global.projectValue=projectValue;
                         console.log("Project Name Entity Value : "+projectValue);
-
                         var responseString="Here is your report data.";
                         session.send(responseString);
                       }//If User says project name along with inquiry request
