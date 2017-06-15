@@ -182,7 +182,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       }//If User says project name along with inquiry request
 
                       else{
-                          console.log("Project Name not Known. Asking Uuser to Provide");
+                          console.log("Project Name not Known. Asking User to Provide");
                           builder.Prompts.text(session, 'Please tell me the Project name');
                       }//If user has not mentioned the Project name along with inquiry request
                       //SENDING PROMPT
