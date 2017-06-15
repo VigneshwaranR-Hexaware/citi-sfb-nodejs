@@ -178,6 +178,8 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       else if(global.verifyFlag==1){
 
                           console.log("Verified. Global Verify Flag : "+global.verifyFlag);
+                          var responseString="This is your report Data";
+                          session.end(responseString);
 
                       }//FIRE when Verification is complete
                  }
