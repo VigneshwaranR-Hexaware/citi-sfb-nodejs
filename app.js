@@ -5,7 +5,8 @@ var restify = require('restify');
 var apiairecognizer = require('api-ai-recognizer');
 var request = require("request");
 //Dependencies
-
+var reportId='EA8836BF451BF05F9B9A08A9D2EB44C2';
+global.reportId=reportId;
 var savedAddress;
 var conversationIndex=0; //Conversation Counter
 //Global Session Holder variables
@@ -47,7 +48,7 @@ bot.dialog('/', intents);
 
                     global.savedAddress = session.message.address;
 
-                    var reportId='EA8836BF451BF05F9B9A08A9D2EB44C2';
+
 
                     var options = { method: 'POST',
                       url: 'http://52.3.221.183:1234/json-data-api/sessions',
@@ -71,7 +72,7 @@ bot.dialog('/', intents);
                       console.log("Token : "+tokenObtained);
                       console.log("Report ID : "+reportId);
                       //Get Auth Token
-                      generateReportData(tokenObtained,reportId, function(responseString){
+                      generateReportData(tokenObtained, function(responseString){
                           console.log(responseString);
                           //console.log("savedAddress : "+savedAddress);
                           session.send(responseString);
@@ -82,13 +83,13 @@ bot.dialog('/', intents);
 
                     });
 
-                    function generateReportData(authTokenRecieved,reportIdentifier, callback){
+                    function generateReportData(authTokenRecieved, callback){
 
                         console.log("Inside Passing Function : "+authTokenRecieved);
 
                         console.log("Auth Token : "+authTokenRecieved);
                         var options = { method: 'POST',
-                          url: 'http://52.3.221.183:1234/json-data-api/reports/'+reportIdentifier+'/instances',
+                          url: 'http://52.3.221.183:1234/json-data-api/reports/'+global.reportId+'/instances',
                           qs: { offset: '0', limit: '1000' },
                           headers:
                           { 'postman-token': 'bcb857d0-8c81-47e4-47fc-97f53abc5816',
@@ -192,7 +193,7 @@ bot.dialog('/', intents);
                              'x-iservername': 'localhost' } };
                              console.log("Triggering POST call for Session Generation");
 
-                        request(options, reportId, function (error, response, body) {
+                        request(options, entityValue, function (error, response, body) {
                           if (error) throw new Error(error);
 
 
@@ -200,7 +201,7 @@ bot.dialog('/', intents);
                           console.log("Token : "+tokenObtained);
                           console.log("Report ID : "+reportId);
                           //Get Auth Token
-                          generateReportData(tokenObtained, reportId, function(responseString){
+                          generateReportData(tokenObtained, entityValue, function(responseString){
                               console.log(responseString);
                               //console.log("savedAddress : "+savedAddress);
                               session.send(responseString);
@@ -212,13 +213,13 @@ bot.dialog('/', intents);
                          });
                         }
 
-                        function generateReportData(authTokenRecieved, reportIdentifier, callback){
+                        function generateReportData(authTokenRecieved, entityValueHere, callback){
 
-                            console.log("Inside Passing Function : "+authTokenRecieved);
+                          //  console.log("Inside Passing Function : "+authTokenRecieved);
                             console.log("Entity Value Inside Passing Function : "+entityValueHere);
                             console.log("Auth Token : "+authTokenRecieved);
                             var options = { method: 'POST',
-                              url: 'http://52.3.221.183:1234/json-data-api/reports/'+reportIdentifier+'/instances',
+                              url: 'http://52.3.221.183:1234/json-data-api/reports/'+global.reportId+'/instances',
                               qs: { offset: '0', limit: '1000' },
                               headers:
                               { 'postman-token': 'bcb857d0-8c81-47e4-47fc-97f53abc5816',
