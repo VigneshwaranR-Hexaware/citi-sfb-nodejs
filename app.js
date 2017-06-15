@@ -6,7 +6,7 @@ var apiairecognizer = require('api-ai-recognizer');
 var request = require("request");
 //Library Dependencies
 
-var generateAuthToken = require('./generateAuthToken');
+var generateAuthToken = require('./generateToken');
 //File Dependencies
 
 var savedAddress;
@@ -45,7 +45,7 @@ bot.dialog('/', intents);
     intents.matches('AttributesIntent', [
 
                 function (session, args) {
-                    console.log("Webhook Intent Called");
+                    console.log("Attributes Intent Called");
                     console.log("Args : "+JSON.stringify(args));
 
                     global.savedAddress = session.message.address;
@@ -64,7 +64,7 @@ bot.dialog('/', intents);
                       });
                       //Get Report
 
-                  
+
 
                     function generateReportData(authTokenRecieved,reportIdentifier, callback){
 
