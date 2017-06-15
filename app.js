@@ -169,7 +169,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 
 
                       var responseString="This is your report Data";
-                      session.end(responseString);
+                      session.send(responseString);
 
 
                  }
