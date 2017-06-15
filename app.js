@@ -162,26 +162,35 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       console.log("Args : "+JSON.stringify(args));
 
                       var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
-                      console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
-                      var entityValue=entityObtained.entity;
-                      global.entityValue=entityValue;
-                      console.log("Data Specific Entity Value : "+entityValue);
                       var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
 
-                      if(projectNameObtained!=null){
+                      if(entityObtained&&projectNameObtained){
+
+                        console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
+                        var entityValue=entityObtained.entity;
+                        global.entityValue=entityValue;
+                        console.log("Data Specific Entity Value : "+entityValue);
 
                         console.log("Project Name Entity Lot : "+JSON.stringify(projectNameObtained));
                         var projectValue=projectNameObtained.entity;
                         global.projectValue=projectValue;
                         console.log("Project Name Entity Value : "+projectValue);
+
                         var responseString="Here is your report data.";
                         session.send(responseString);
+                        //SENDING DIRECT RESPONSE FOR ALL VALUES INCLUDED INTENT STYLE
                       }//If User says project name along with inquiry request
+
                       else{
-                        var responseString="Please enter your Project Name";
-                        session.send(responseString);
-                      }//If user has not mentioned the Project name
-                 }
+                          builder.Prompts.text(session, 'Please tell me the Project name');
+                      }//If user has not mentioned the Project name along with inquiry request
+                      //SENDING PROMPT
+                 },
+                 function(session,results)
+                  {
+                      session.send("Here is your report for " + results.response);
+
+                  } //SENDING FULFILLED RESPONSE
                ])//Specific Data Inquiry Intent Fired
 
 
