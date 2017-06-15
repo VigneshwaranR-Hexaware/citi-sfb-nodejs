@@ -1,3 +1,5 @@
+var request = require('request');
+
 module.exports={
   'MicrostrategyTokenGenerator': function(reportId){
     var options = { method: 'POST',
