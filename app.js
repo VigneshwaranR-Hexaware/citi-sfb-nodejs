@@ -194,7 +194,9 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       console.log("Fulfilled Specific Request Response");
                       console.log(JSON.stringify(session));
                       console.log(JSON.stringify(next));
-                      session.send("Here is your report ");
+                      var fulfilledProjectName=next.response;
+                      var responseString="Here is your Report for "+fulfilledProjectName;
+                      session.send(responseString);
 
                   } //SENDING FULFILLED RESPONSE
                ])//Specific Data Inquiry Intent Fired
