@@ -157,7 +157,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                 ])//Capabilities Intent Fired
 
                 .matches('ReportSpecificDataInquiryIntent', [
-                    function (session, args, next) {
+                    function (session, args) {
                       console.log("Report Specific Data Intent Called");
                       console.log("Args : "+JSON.stringify(args));
 
