@@ -4,7 +4,10 @@ var builder = require('botbuilder');
 var restify = require('restify');
 var apiairecognizer = require('api-ai-recognizer');
 var request = require("request");
-//Dependencies
+//Library Dependencies
+
+var generateAuthToken = require('./generateAuthToken');
+//File Dependencies
 
 var savedAddress;
 var conversationIndex=0; //Conversation Counter
@@ -49,27 +52,8 @@ bot.dialog('/', intents);
 
                     var reportId='EA8836BF451BF05F9B9A08A9D2EB44C2';
 
-                    var options = { method: 'POST',
-                      url: 'http://52.3.221.183:1234/json-data-api/sessions',
-                      headers:
-                      { 'postman-token': 'ffbe2e8a-6732-e2dc-357a-4e7b77afa663',
-                         'cache-control': 'no-cache',
-                         accept: 'application/vnd.mstr.dataapi.v0+json',
-                         'content-type': 'application/json',
-                         'x-authmode': '1',
-                         'x-username': 'administrator',
-                         'x-projectname': 'Hello World',
-                         'x-port': '34952',
-                         'x-iservername': 'localhost' } };
-                         console.log("Triggering POST call for Session Generation");
-
-                    request(options, reportId, function (error, response, body) {
-                      if (error) throw new Error(error);
-
-
-                      var tokenObtained=JSON.parse(body).authToken;
-                      console.log("Token : "+tokenObtained);
-                      console.log("Report ID : "+reportId);
+                      var tokenObtained=generateAuthToken.MicrostrategyTokenGenerator(reportId);
+                      console.log(tokenObtained);
                       //Get Auth Token
                       generateReportData(tokenObtained,reportId, function(responseString){
                           console.log(responseString);
@@ -120,7 +104,7 @@ bot.dialog('/', intents);
                           var reportNameDetail = JSON.parse(body).result.definition.attributes[0].name.substring(0,JSON.parse(body).result.definition.attributes[0].name.indexOf("."));
                           console.log(reportNameDetail);
 
-                          var responseString="This is a "+reportNameDetail+" for the respective "+arrayString+" attributes";
+                          var responseString="This is a "+reportNameDetail+" for the respective "+arrayString+" attributes from Microstrategy for Citi";
                           console.log(responseString);
                           console.log("SESSION");
 
