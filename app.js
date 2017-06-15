@@ -173,14 +173,14 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
                       global.projectValue=projectValue;
                       console.log("Project Name Entity Value : "+projectValue);
 
-                      if(projectValue!=undefined){
+                      if(projectValue!=null){
                         var responseString="Here is your report data.";
                         session.send(responseString);
-                      }
+                      }//If User says project name along with inquiry request
                       else{
                         var responseString="Please enter your Project Name";
                         session.send(responseString);
-                      }
+                      }//If user has not mentioned the Project name
                  }
                ])//Specific Data Inquiry Intent Fired
 
