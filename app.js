@@ -321,6 +321,8 @@ bot.dialog('/', intents);
                                             var marketIndex=JSON.parse(body).result.data.root.children[index].children[indexChild].metrics[dataSetKey].mi;
                                             console.log("MI : "+marketIndex);
 
+                                            var responseString="Values Obtained";
+
                                         }
 
                                     }
