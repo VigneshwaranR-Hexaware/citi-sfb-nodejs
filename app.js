@@ -285,12 +285,14 @@ bot.dialog('/', intents);
                                 }
 
                                 if(childrenSubOneFlag==1){
-                                    console.log("Found Requested Year ID : "+JSON.parse(body).result.data.root.children[indexSecond].element.id);
                                     var idRecieved=JSON.parse(body).result.data.root.children[indexSecond].element.id;
+                                    console.log("Found Requested Year ID : "+idRecieved);
+
 
                                     //console.log(JSON.parse(body).result.data.root.children[index].children[0].element.name);
 
                                     var childrenRange = JSON.parse(body).result.data.root.children[index].children.length;
+                                    console.log("Children Range length : "+childrenRange);
 
                                     var indexChild;
                                     var childrenSubTwoFlag=0;
