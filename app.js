@@ -173,11 +173,19 @@ bot.dialog('/', intents);
                         console.log("All Entities Recieved as Input from User");
                         console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
                         var entityValue=entityObtained.entity;
-                        global.entityValue=entityValue;
+                        global.entityValueHere=entityValue;
                         console.log("Data Specific Entity Value : "+entityValue);
+                        global.timeRangeInput='2012';
+
+                        // var entityValueHere='cash and cash equivalents';
+                        // global.entityValueHere=entityValueHere;
 
 
                         var reportId='EA8836BF451BF05F9B9A08A9D2EB44C2';
+                        global.reportId=reportId;
+
+                        var clientName='ABBV';
+                        global.clientName=clientName;
 
                         var options = { method: 'POST',
                           url: 'http://52.3.221.183:1234/json-data-api/sessions',
@@ -201,7 +209,7 @@ bot.dialog('/', intents);
                           console.log("Token : "+tokenObtained);
                           console.log("Report ID : "+reportId);
                           //Get Auth Token
-                          generateReportData(tokenObtained, entityValue, function(responseString){
+                          generateReportSpecificData(tokenObtained, entityValue, function(responseString){
                               console.log(responseString);
                               //console.log("savedAddress : "+savedAddress);
                               session.send(responseString);
@@ -213,48 +221,127 @@ bot.dialog('/', intents);
                          });
                         }
 
-                        function generateReportData(authTokenRecieved, entityValueHere, callback){
+                        function generateReportSpecificData(authTokenRecieved, entityValueHere, callback){
 
                           //  console.log("Inside Passing Function : "+authTokenRecieved);
                             console.log("Entity Value Inside Passing Function : "+entityValueHere);
                             console.log("Auth Token : "+authTokenRecieved);
                             var options = { method: 'POST',
-                              url: 'http://52.3.221.183:1234/json-data-api/reports/'+global.reportId+'/instances',
-                              qs: { offset: '0', limit: '1000' },
-                              headers:
-                              { 'postman-token': 'bcb857d0-8c81-47e4-47fc-97f53abc5816',
-                                 'cache-control': 'no-cache',
-                                 'x-mstr-authtoken': authTokenRecieved,
-                                 accept: 'application/vnd.mstr.dataapi.v0+json',
-                                 'content-type': 'application/vnd.mstr.dataapi.v0+json' } };
+                            url: 'http://52.3.221.183:1234/json-data-api/reports/'+reportId+'/instances',
+                            qs: { offset: '0', limit: '1000' },
+                            headers:
+                            { 'postman-token': 'bcb857d0-8c81-47e4-47fc-97f53abc5816',
+                               'cache-control': 'no-cache',
+                               'x-mstr-authtoken': authTokenRecieved,
+                               accept: 'application/vnd.mstr.dataapi.v0+json',
+                               'content-type': 'application/vnd.mstr.dataapi.v0+json' } };
 
-                            request(options, function (error, response, body) {
-                              if (error) throw new Error(error);
+                          request(options, entityValueHere, function (error, response, body) {
+                            if (error) throw new Error(error);
 
-                              var array=[];
-                              var arrayString="";
-                              console.log(body);
-                              // console.log("Complete : "+JSON.stringify(JSON.parse(body).result.definition.attributes));
-                              // var attributeLength=JSON.parse(body).result.definition.attributes.length;
-                              // console.log("Attributes Length : "+attributeLength);
-                              //
-                              // for(var i=0;i<attributeLength;i++){
-                              //     var attributeParams = JSON.parse(body).result.definition.attributes[i].name.substring(JSON.parse(body).result.definition.attributes[i].name.indexOf(".")+1);
-                              //     array.push(attributeParams);
-                              //     arrayString=arrayString+""+attributeParams+" ";
-                              //
-                              // }
-                              // console.log(arrayString);
-                              // arrayString = arrayString.substring(0, arrayString.length-1);
-                              // arrayString=arrayString.replace(/\s+/g, ", ");
-                              // arrayString=arrayString.replace(/,(?=[^,]*$)/, ' and');
-                              // console.log(arrayString);
-                              // var reportNameDetail = JSON.parse(body).result.definition.attributes[0].name.substring(0,JSON.parse(body).result.definition.attributes[0].name.indexOf("."));
-                              // console.log(reportNameDetail);
-                              //
-                              // var responseString="This is a "+reportNameDetail+" for the respective "+arrayString+" attributes from Microstrategy for Citi";
-                              // console.log(responseString);
-                              // console.log("SESSION");
+                            //var array=[];
+                            //var arrayString="";
+                            //console.log(JSON.parse(body));
+                            var index;
+                            var metricFlag=0;
+                            var metricsLength=JSON.parse(body).result.definition.metrics.length;
+                            console.log("Metrics Length : "+metricsLength);
+
+                            for(var i=0;i<metricsLength;i++){
+
+                                var metricsParams = JSON.parse(body).result.definition.metrics[i].name.substring(JSON.parse(body).result.definition.metrics[i].name.indexOf(".")+1);
+                                //console.log(metricsParams);
+                                if(entityValueHere===metricsParams){
+                                    index=i;
+                                    metricFlag=1;
+                                }
+                                //array.push(metricsParams);
+                                //arrayString=arrayString+""+metricsParams+" ";
+
+
+                            }
+                            if(metricFlag==1){
+                                console.log("Found Metrics for "+JSON.parse(body).result.definition.metrics[index].name.substring(JSON.parse(body).result.definition.metrics[index].name.indexOf(".")+1));
+                                var metricsMin=JSON.parse(body).result.definition.metrics[index].min;
+                                var metricsMax=JSON.parse(body).result.definition.metrics[index].max;
+                                console.log("Min Metrics : "+metricsMin);
+                                console.log("Max Metrics : "+metricsMax);
+
+
+                                var indexSecond;
+                                var childrenSubOneFlag=0;
+                                console.log("Length of Root Data : "+JSON.parse(body).result.data.root.children.length);
+                                var timeRange=JSON.parse(body).result.data.root.children.length;
+                                console.log("Global Time Range Input : "+global.timeRangeInput);
+                                for(var j=0;j<timeRange;j++){
+                                    //console.log(JSON.stringify(JSON.parse(body).result.data.root.children[j].element.name).slice(1,5));
+                                    var timeRangeValue=JSON.stringify(JSON.parse(body).result.data.root.children[j].element.name).slice(1,5);
+
+                                    if(timeRangeValue===global.timeRangeInput){
+                                        indexSecond=j;
+                                        childrenSubOneFlag=1;
+
+                                    }
+                                }
+
+                                if(childrenSubOneFlag==1){
+                                    console.log("Found Requested Year ID : "+JSON.parse(body).result.data.root.children[indexSecond].element.id);
+                                    var idRecieved=JSON.parse(body).result.data.root.children[indexSecond].element.id;
+
+                                    //console.log(JSON.parse(body).result.data.root.children[index].children[0].element.name);
+
+                                    var childrenRange = JSON.parse(body).result.data.root.children[index].children.length;
+
+                                    var indexChild;
+                                    var childrenSubTwoFlag=0;
+                                    for(var k=0;k<childrenRange;k++){
+
+                                        var clientNameValue = JSON.parse(body).result.data.root.children[index].children[k].element.name;
+                                        if(clientNameValue==global.clientName){
+                                            indexChild=k;
+                                            childrenSubTwoFlag=1;
+
+                                        }
+
+                                    }
+
+                                    if(childrenSubTwoFlag==1){
+                                        console.log("Found the Client Data");
+                                        //console.log(JSON.parse(body).result.data.root.children[index].children[indexChild].metrics);
+                                        //console.log("Data Set Length : "+JSON.parse(body).result.data.root.children[index].children[indexChild].metrics.length);
+                                        var dataSetKey = JSON.parse(body).result.definition.metrics[index].name;
+                                        if(JSON.parse(body).result.data.root.children[index].children[indexChild].metrics.hasOwnProperty(dataSetKey)){
+                                            console.log("Data Set Exists");
+                                            var rateableValue=JSON.parse(body).result.data.root.children[index].children[indexChild].metrics[dataSetKey].rv;
+                                            console.log("RV : "+rateableValue);
+                                            var futureValue=JSON.parse(body).result.data.root.children[index].children[indexChild].metrics[dataSetKey].fv;
+                                            console.log("FV : "+futureValue);
+                                            var marketIndex=JSON.parse(body).result.data.root.children[index].children[indexChild].metrics[dataSetKey].mi;
+                                            console.log("MI : "+marketIndex);
+
+                                        }
+
+                                    }
+                                    else if(childrenSubTwoFlag==0){
+                                        console.log("Client Data does not exist");
+                                    }
+
+
+
+                                }
+                                else if(childrenSubOneFlag==0){
+                                    console.log("Did Not Find Requsted Year Entry for "+global.timeRangeInput);
+                                }
+                                //console.log(JSON.stringify(JSON.parse(body).result.data.root.children[0].element.name).slice(1,5));
+                                //var dateRequired=JSON.stringify(JSON.parse(body).result.data.root.children[0].element.name).slice(1,5);
+
+                            }
+                            else if(metricFlag==0){
+                                console.log("Metrics for "+entityValueHere+" do not exist");
+                            }
+
+
+
 
                               callback(responseString);
 
