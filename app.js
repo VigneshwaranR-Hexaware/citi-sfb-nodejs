@@ -21,7 +21,7 @@ server.listen(process.env.port || process.env.PORT || 3978, function () {
 // Create connector and listen for messages
 var connector = new builder.ChatConnector({
    appId: "72308ad8-d853-4775-8019-d2fee6686eb2",
-   appPassword: "egVQiG1WJyboV7c19qC4pmG"
+   appPassword: "bS5r46iC0kzmmnP4cm51BTv"
 });
 
 
