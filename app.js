@@ -123,7 +123,26 @@ bot.dialog('/', intents);
                           var reportNameDetail = JSON.parse(body).result.definition.attributes[0].name.substring(0,JSON.parse(body).result.definition.attributes[0].name.indexOf("."));
                           console.log(reportNameDetail);
 
-                          var responseString="This is a "+reportNameDetail+" for the respective "+arrayString+" from Citi for its clients";
+
+                           var columnContainer=[];
+                           var columnString="";
+
+                            var metricsLength=body.result.definition.metrics.length;//Put JSON parse
+                            console.log("Metrics Length : "+metricsLength);
+
+
+                          for(var i=0;i<metricsLength;i++){
+                              var metricsParams = body.result.definition.metrics[i].name.substring(body.result.definition.metrics[i].name.indexOf(".")+1);
+                              metricsParams=metricsParams.charAt(0).toUpperCase() + metricsParams.slice(1);
+
+                              columnContainer.push(metricsParams);
+                              columnString=columnString+""+metricsParams+"\n";
+
+
+                          }
+                          console.log(columnString);
+
+                          var responseString="This is a "+reportNameDetail+" for the respective "+arrayString+" from Citi for its clients. These are the data fields :\n"+columnString;
                           console.log(responseString);
                           console.log("SESSION");
 
