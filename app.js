@@ -166,25 +166,29 @@ bot.dialog('/', intents);
 
                       var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
                       var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
-                      
+                      var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
+
                       // var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
 
 
-                      if(entityObtained&&clientNameObtained){
+                      if(entityObtained&&clientNameObtained&&timeRangeObtained){
 
                         console.log("All Entities Recieved as Input from User");
                         console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
                         var entityValue=entityObtained.entity;
                         global.entityValueHere=entityValue;
-                        //Entity Value Obtained
                         console.log("Data Specific Entity Value : "+entityValue);
+                          //Entity Value Obtained
+
+
                         var clientName=clientNameObtained.entity;
                         console.log("Client Name Obtained : "+clientName);
-                        //var clientName='ABBV';
                         global.clientName=clientName;
                         //Client Name Obtained
 
 
+                        var timeRangeInput=timeRangeObtained.entity;
+                        console.log("Custom Time Range : "+timeRangeInput);
                         global.timeRangeInput='2012';
 
                         // var entityValueHere='cash and cash equivalents';
