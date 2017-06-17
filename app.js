@@ -121,7 +121,7 @@ bot.dialog('/', intents);
                           var reportNameDetail = JSON.parse(body).result.definition.attributes[0].name.substring(0,JSON.parse(body).result.definition.attributes[0].name.indexOf("."));
                           console.log(reportNameDetail);
 
-                          var responseString="This is a "+reportNameDetail+" for the respective "+arrayString+" attributes from Microstrategy for Citi";
+                          var responseString="This is a "+reportNameDetail+" for the respective "+arrayString+" from Citi for its clients";
                           console.log(responseString);
                           console.log("SESSION");
 
@@ -356,7 +356,7 @@ bot.dialog('/', intents);
                                 }
                                 else if(childrenSubOneFlag==0){
                                     console.log("Did Not Find Requsted Year Entry for "+global.timeRangeInput);
-                                    var responseString="There is no recorded data for "+global.clientName+" for the Year of "+global.timeRangeInput;
+                                    var responseString="There is no recorded data for "+global.clientName+" for the Year of "+global.timeRangeInput+". The data in the report only contains values from "+global.initialTimeRange+" to "+global.lastTimeRange+".";
                                 }
                                 //console.log(JSON.stringify(JSON.parse(body).result.data.root.children[0].element.name).slice(1,5));
                                 //var dateRequired=JSON.stringify(JSON.parse(body).result.data.root.children[0].element.name).slice(1,5);
