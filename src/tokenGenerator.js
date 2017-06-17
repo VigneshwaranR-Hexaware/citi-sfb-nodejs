@@ -16,7 +16,7 @@ module.exports={
          'x-iservername': 'localhost' } };
          console.log("Triggering POST call for Session Generation");
 
-         request(options, entityValue, function (error, response, body) {
+         request(options, function (error, response, body) {
            if (error) throw new Error(error);
 
            var tokenObtained=JSON.parse(body).authToken;
