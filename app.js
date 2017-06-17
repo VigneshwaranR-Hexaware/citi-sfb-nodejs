@@ -188,8 +188,8 @@ bot.dialog('/', intents);
 
 
                         var timeRangeInput=timeRangeObtained.entity;
-                        console.log("Custom Time Range : "+timeRangeInput.slice(1,4));
-                        global.timeRangeInput='2012';
+                        console.log("Custom Time Range : "+timeRangeInput.slice(0,4));
+                        global.timeRangeInput=timeRangeInput.slice(0,4);
 
                         // var entityValueHere='cash and cash equivalents';
                         // global.entityValueHere=entityValueHere;
