@@ -165,16 +165,26 @@ bot.dialog('/', intents);
                       console.log("Args : "+JSON.stringify(args));
 
                       var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
+                      var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
+                      
                       // var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
 
 
-                      if(entityObtained){
+                      if(entityObtained&&clientNameObtained){
 
                         console.log("All Entities Recieved as Input from User");
                         console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
                         var entityValue=entityObtained.entity;
                         global.entityValueHere=entityValue;
+                        //Entity Value Obtained
                         console.log("Data Specific Entity Value : "+entityValue);
+                        var clientName=clientNameObtained.entity;
+                        console.log("Client Name Obtained : "+clientName);
+                        //var clientName='ABBV';
+                        global.clientName=clientName;
+                        //Client Name Obtained
+
+
                         global.timeRangeInput='2012';
 
                         // var entityValueHere='cash and cash equivalents';
@@ -184,8 +194,7 @@ bot.dialog('/', intents);
                         var reportId='EA8836BF451BF05F9B9A08A9D2EB44C2';
                         global.reportId=reportId;
 
-                        var clientName='ABBV';
-                        global.clientName=clientName;
+
 
                         var options = { method: 'POST',
                           url: 'http://52.3.221.183:1234/json-data-api/sessions',
