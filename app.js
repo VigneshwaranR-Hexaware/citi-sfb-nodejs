@@ -341,7 +341,7 @@ bot.dialog('/', intents);
                                     }
                                     else if(childrenSubTwoFlag==0){
                                         console.log("Client Data does not exist");
-                                        var responseString="Client data does not exist";
+                                        var responseString="This report doesnt have any data on "+global.clientName;
                                     }
 
 
@@ -349,7 +349,7 @@ bot.dialog('/', intents);
                                 }
                                 else if(childrenSubOneFlag==0){
                                     console.log("Did Not Find Requsted Year Entry for "+global.timeRangeInput);
-                                    var responseString="There is no entry for the Year of "+global.timeRangeInput;
+                                    var responseString="There is no recorded data for "+global.clientName+" for the Year of "+global.timeRangeInput;
                                 }
                                 //console.log(JSON.stringify(JSON.parse(body).result.data.root.children[0].element.name).slice(1,5));
                                 //var dateRequired=JSON.stringify(JSON.parse(body).result.data.root.children[0].element.name).slice(1,5);
@@ -357,7 +357,7 @@ bot.dialog('/', intents);
                             }
                             else if(metricFlag==0){
                                 console.log("Metrics for "+entityValueHere+" do not exist");
-                                var responseString="There are no Metrics for "+entityValueHere;
+                                var responseString="There are no Metrics for "+entityValueHere+" in this report";
                             }
 
 
