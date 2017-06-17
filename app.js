@@ -276,7 +276,9 @@ bot.dialog('/', intents);
                             if(metricFlag==1){
                                 console.log("Found Metrics for "+JSON.parse(body).result.definition.metrics[index].name.substring(JSON.parse(body).result.definition.metrics[index].name.indexOf(".")+1));
                                 var metricsMin=JSON.parse(body).result.definition.metrics[index].min;
+                                global.metricsMin=metricsMin;
                                 var metricsMax=JSON.parse(body).result.definition.metrics[index].max;
+                                global.metricsMax=metricsMax;
                                 console.log("Min Metrics : "+metricsMin);
                                 console.log("Max Metrics : "+metricsMax);
 
@@ -286,8 +288,13 @@ bot.dialog('/', intents);
                                 console.log("Length of Root Data : "+JSON.parse(body).result.data.root.children.length);
                                 var timeRange=JSON.parse(body).result.data.root.children.length;
                                 console.log("Global Time Range Input : "+global.timeRangeInput);
+                                global.initialTimeRange=JSON.stringify(JSON.parse(body).result.data.root.children[0].element.name).slice(1,5);
+                                console.log("Initial Time Range as Recorded : "+global.initialTimeRange);
+                                global.lastTimeRange=JSON.stringify(JSON.parse(body).result.data.root.children[timeRange].element.name).slice(1,5);
+                                console.log("Final Time Range as Recorded : "+global.lastTimeRange);
                                 for(var j=0;j<timeRange;j++){
                                     //console.log(JSON.stringify(JSON.parse(body).result.data.root.children[j].element.name).slice(1,5));
+
                                     var timeRangeValue=JSON.stringify(JSON.parse(body).result.data.root.children[j].element.name).slice(1,5);
 
                                     if(timeRangeValue===global.timeRangeInput){
