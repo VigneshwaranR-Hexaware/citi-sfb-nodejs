@@ -174,7 +174,7 @@ bot.dialog('/', intents);
                        console.log("Satisfactory Intent Fired");
                        console.log("Args : "+JSON.stringify(args));
                         //console.log("New Conversation Intent Called 1.0");
-                        var responseString="You're Welcome."
+                        var responseString="You're Welcome. \n Thanks"
                         session.send(responseString);
                         //global.savedAddress = session.message.address;
                         //startNewConversation(savedAddress);
