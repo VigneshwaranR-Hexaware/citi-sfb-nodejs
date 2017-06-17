@@ -341,7 +341,7 @@ bot.dialog('/', intents);
                                             var marketIndex=JSON.parse(body).result.data.root.children[indexSecond].children[indexChild].metrics[dataSetKey].mi;
                                             console.log("MI : "+marketIndex);
 
-                                            var responseString="I have found the data you wanted. The client "+global.clientName+"\'s "+global.entityValueHere+" had Rateable Value : "+rateableValue+", Future Value : "+futureValue+" and Market Index : "+marketIndex+" for the year "+global.timeRangeInput;
+                                            var responseString="I have found the data you wanted. The client "+global.clientName+"\'s "+global.entityValueHere+" had Rateable Value : "+rateableValue+" for the year "+global.timeRangeInput;
 
                                         }
 
