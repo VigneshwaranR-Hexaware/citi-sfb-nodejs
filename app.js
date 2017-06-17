@@ -127,12 +127,12 @@ bot.dialog('/', intents);
                            var columnContainer=[];
                            var columnString="";
 
-                            var metricsLength=body.result.definition.metrics.length;//Put JSON parse
+                            var metricsLength=JSON.parse(body).result.definition.metrics.length;//Put JSON parse
                             console.log("Metrics Length : "+metricsLength);
 
 
                           for(var i=0;i<metricsLength;i++){
-                              var metricsParams = body.result.definition.metrics[i].name.substring(body.result.definition.metrics[i].name.indexOf(".")+1);
+                              var metricsParams = JSON.parse(body).result.definition.metrics[i].name.substring(JSON.parse(body).result.definition.metrics[i].name.indexOf(".")+1);
                               metricsParams=metricsParams.charAt(0).toUpperCase() + metricsParams.slice(1);
 
                               columnContainer.push(metricsParams);
