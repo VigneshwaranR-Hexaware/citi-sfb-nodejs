@@ -290,7 +290,7 @@ bot.dialog('/', intents);
                                 console.log("Global Time Range Input : "+global.timeRangeInput);
                                 global.initialTimeRange=JSON.stringify(JSON.parse(body).result.data.root.children[0].element.name).slice(1,5);
                                 console.log("Initial Time Range as Recorded : "+global.initialTimeRange);
-                                global.lastTimeRange=JSON.stringify(JSON.parse(body).result.data.root.children[timeRange].element.name).slice(1,5);
+                                global.lastTimeRange=JSON.stringify(JSON.parse(body).result.data.root.children[timeRange-1].element.name).slice(1,5);
                                 console.log("Final Time Range as Recorded : "+global.lastTimeRange);
                                 for(var j=0;j<timeRange;j++){
                                     //console.log(JSON.stringify(JSON.parse(body).result.data.root.children[j].element.name).slice(1,5));
