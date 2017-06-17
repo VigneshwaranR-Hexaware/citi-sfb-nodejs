@@ -303,23 +303,22 @@ bot.dialog('/', intents);
 
                                     }
                                 }
-
+                                console.log("Found First Index : "+index);
                                 if(childrenSubOneFlag==1){
                                     var idRecieved=JSON.parse(body).result.data.root.children[indexSecond].element.id;
-                                    console.log("Found Requested Year ID : "+idRecieved);
-                                    console.log("Second Index : "+indexSecond);
+
 
 
                                     //console.log(JSON.parse(body).result.data.root.children[index].children[0].element.name);
 
-                                    var childrenRange = JSON.parse(body).result.data.root.children[index].children.length;
+                                    var childrenRange = JSON.parse(body).result.data.root.children[indexSecond].children.length;
                                     console.log("Children Range length : "+childrenRange);
 
                                     var indexChild;
                                     var childrenSubTwoFlag=0;
                                     for(var k=0;k<childrenRange;k++){
 
-                                        var clientNameValue = JSON.parse(body).result.data.root.children[index].children[k].element.name;
+                                        var clientNameValue = JSON.parse(body).result.data.root.children[indexSecond].children[k].element.name;
                                         if(clientNameValue==global.clientName){
                                             indexChild=k;
                                             childrenSubTwoFlag=1;
@@ -327,19 +326,19 @@ bot.dialog('/', intents);
                                         }
 
                                     }
-
+                                    console.log("Found Second Index : "+indexSecond);
                                     if(childrenSubTwoFlag==1){
                                         console.log("Found the Client Data");
                                         //console.log(JSON.parse(body).result.data.root.children[index].children[indexChild].metrics);
                                         //console.log("Data Set Length : "+JSON.parse(body).result.data.root.children[index].children[indexChild].metrics.length);
                                         var dataSetKey = JSON.parse(body).result.definition.metrics[index].name;
-                                        if(JSON.parse(body).result.data.root.children[index].children[indexChild].metrics.hasOwnProperty(dataSetKey)){
+                                        if(JSON.parse(body).result.data.root.children[indexSecond].children[indexChild].metrics.hasOwnProperty(dataSetKey)){
                                             console.log("Data Set Exists");
-                                            var rateableValue=JSON.parse(body).result.data.root.children[index].children[indexChild].metrics[dataSetKey].rv;
+                                            var rateableValue=JSON.parse(body).result.data.root.children[indexSecond].children[indexChild].metrics[dataSetKey].rv;
                                             console.log("RV : "+rateableValue);
-                                            var futureValue=JSON.parse(body).result.data.root.children[index].children[indexChild].metrics[dataSetKey].fv;
+                                            var futureValue=JSON.parse(body).result.data.root.children[indexSecond].children[indexChild].metrics[dataSetKey].fv;
                                             console.log("FV : "+futureValue);
-                                            var marketIndex=JSON.parse(body).result.data.root.children[index].children[indexChild].metrics[dataSetKey].mi;
+                                            var marketIndex=JSON.parse(body).result.data.root.children[indexSecond].children[indexChild].metrics[dataSetKey].mi;
                                             console.log("MI : "+marketIndex);
 
                                             var responseString="I have found the data you wanted. The client "+global.clientName+"\'s "+global.entityValueHere+" had Rateable Value : "+rateableValue+", Future Value : "+futureValue+" and Market Index : "+marketIndex+" for the year "+global.timeRangeInput;
