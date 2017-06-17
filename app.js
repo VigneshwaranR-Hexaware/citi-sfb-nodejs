@@ -4,7 +4,7 @@ var builder = require('botbuilder');
 var restify = require('restify');
 var apiairecognizer = require('api-ai-recognizer');
 var request = require("request");
-var tokenGenerator = require('./src/tokenGenerator');
+
 var specifics = require('./src/requestSpecificData');
 //Dependencies
 var reportId='EA8836BF451BF05F9B9A08A9D2EB44C2';
@@ -52,15 +52,35 @@ bot.dialog('/', intents);
 
 
 
-                    var tokenObtained=tokenGenerator.MicrostrategyAuthTokenGenerator();
-                    console.log("Token Obtained Initial : "+tokenObtained);
+                    var options = { method: 'POST',
+                      url: 'http://52.3.221.183:1234/json-data-api/sessions',
+                      headers:
+                      { 'postman-token': 'ffbe2e8a-6732-e2dc-357a-4e7b77afa663',
+                         'cache-control': 'no-cache',
+                         accept: 'application/vnd.mstr.dataapi.v0+json',
+                         'content-type': 'application/json',
+                         'x-authmode': '1',
+                         'x-username': 'administrator',
+                         'x-projectname': 'Hello World',
+                         'x-port': '34952',
+                         'x-iservername': 'localhost' } };
+                         console.log("Triggering POST call for Session Generation");
+
+                    request(options, reportId, function (error, response, body) {
+                      if (error) throw new Error(error);
+
+
+                      var tokenObtained=JSON.parse(body).authToken;
+                      console.log("Token : "+tokenObtained);
+                      console.log("Report ID : "+reportId);
+                      //Get Auth Token
                       generateReportData(tokenObtained, function(responseString){
                           console.log(responseString);
                           //console.log("savedAddress : "+savedAddress);
                           session.send(responseString);
                           session.endDialog();
 
-                    
+                      });
                       //Get Report
 
                     });
