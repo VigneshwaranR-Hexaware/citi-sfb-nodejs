@@ -136,7 +136,7 @@ bot.dialog('/', intents);
                               metricsParams=metricsParams.charAt(0).toUpperCase() + metricsParams.slice(1);
 
                               columnContainer.push(metricsParams);
-                              columnString=columnString+''+metricsParams+'"\n';
+                              columnString=columnString+''+metricsParams+'\"n';
 
 
                           }
