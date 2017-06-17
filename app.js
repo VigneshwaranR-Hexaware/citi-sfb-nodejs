@@ -142,7 +142,7 @@ bot.dialog('/', intents);
                           }
                           console.log(columnString);
 
-                          var responseString="This is a "+reportNameDetail+" for the respective "+arrayString+" from Citi for its clients. These are the data fields :\n"+columnString;
+                          var responseString="This is a "+reportNameDetail+" for the \n\nrespective "+arrayString+" from Citi for its clients. These are the data fields :\n"+columnString;
                           console.log(responseString);
                           console.log("SESSION");
 
