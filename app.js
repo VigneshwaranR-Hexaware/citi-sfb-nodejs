@@ -60,7 +60,7 @@ bot.dialog('/', intents);
                           session.send(responseString);
                           session.endDialog();
 
-                      });
+                    
                       //Get Report
 
                     });
