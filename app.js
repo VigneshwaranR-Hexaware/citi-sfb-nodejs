@@ -5,7 +5,7 @@ var restify = require('restify');
 var apiairecognizer = require('api-ai-recognizer');
 var request = require("request");
 
-var specifics = require('./requestSpecificData');
+var specifics = require('./src/requestSpecificData');
 //Dependencies
 var reportId='EA8836BF451BF05F9B9A08A9D2EB44C2';
 global.reportId=reportId;
