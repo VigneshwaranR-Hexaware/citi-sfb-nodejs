@@ -204,13 +204,13 @@ bot.dialog('/', intents);
                           var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
                           var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
                           var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
-                          if(entityObtained!=undefined&&clientNameObtained===undefined&&timeRangeObtained===undefined){
+                          if(entityObtained!=undefined&&clientNameObtained==undefined&&timeRangeObtained==undefined){
                             global.entityObtained = entityObtained;
                             console.log("entityObtained Saved : "+JSON.stringify(global.entityObtained));
                             session.send(prompt);
                           //  session.send(prompt);
                           }
-                          else if(clientNameObtained!=undefined&&entityObtained!=undefined&&timeRangeObtained===undefined){
+                          else if(clientNameObtained!=undefined&&entityObtained!=undefined&&timeRangeObtained==undefined){
                             global.clientNameObtained = clientNameObtained;
                             console.log("clientNameObtained Saved : "+JSON.stringify(global.clientNameObtained));
                             session.send(prompt);
