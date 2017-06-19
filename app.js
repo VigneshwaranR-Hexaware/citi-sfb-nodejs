@@ -212,13 +212,19 @@ bot.dialog('/', intents);
                           }
                           else if(clientNameObtained!=undefined&&entityObtained!=undefined&&timeRangeObtained==undefined){
                             global.clientNameObtained = clientNameObtained;
+                            global.entityObtained = entityObtained;
                             console.log("clientNameObtained Saved : "+JSON.stringify(global.clientNameObtained));
+                            console.log("entityObtained Saved : "+JSON.stringify(global.entityObtained));
                             session.send(prompt);
                           //  session.send(prompt);
                           }
                           else if(timeRangeObtained&&entityObtained&&clientNameObtained){
                             global.timeRangeObtained = timeRangeObtained;
+                            global.entityObtained = entityObtained;
+                            global.clientNameObtained = clientNameObtained;
                             console.log("timeRangeObtained Saved : "+JSON.stringify(global.timeRangeObtained));
+                            console.log("entityObtained Saved : "+JSON.stringify(global.timeRangeObtained));
+                            console.log("clientNameObtained Saved : "+JSON.stringify(global.timeRangeObtained));
                             //session.send(prompt);
                           //  session.send(prompt);
                           }
