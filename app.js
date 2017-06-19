@@ -206,19 +206,19 @@ bot.dialog('/', intents);
                           var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
                           if(entityObtained){
                             global.entityObtained = entityObtained;
-                            console.log("entityObtained Saved");
+                            console.log("entityObtained Saved : "+global.entityObtained);
                             session.send(prompt);
                           //  session.send(prompt);
                           }
                           else if(clientNameObtained){
                             global.clientNameObtained = clientNameObtained;
-                            console.log("clientNameObtained Saved");
+                            console.log("clientNameObtained Saved : "+global.clientNameObtained);
                             session.send(prompt);
                           //  session.send(prompt);
                           }
                           else if(timeRangeObtained){
                             global.timeRangeObtained = timeRangeObtained;
-                            console.log("timeRangeObtained Saved");
+                            console.log("timeRangeObtained Saved : "+global.timeRangeObtained);
                             session.send(prompt);
                           //  session.send(prompt);
                           }
