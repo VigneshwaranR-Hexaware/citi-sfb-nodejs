@@ -210,15 +210,15 @@ bot.dialog('/', intents);
 
                       console.log("entityObtained : "+JSON.stringify(entityObtained)+" , clientNameObtained : "+JSON.stringify(clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(timeRangeObtained));
 
-                      if(JSON.stringify(entityObtained)==null&&JSON.stringify(clientNameObtained)==null&&JSON.stringify(timeRangeObtained)==null){
+                      if(JSON.stringify(entityObtained)==undefined&&JSON.stringify(clientNameObtained)==undefined&&JSON.stringify(timeRangeObtained)==undefined){
                         console.log("When all Null");
                         var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
                       }
-                      else if(JSON.stringify(entityObtained)!=null&&JSON.stringify(clientNameObtained)==null&&JSON.stringify(timeRangeObtained)==null){
+                      else if(JSON.stringify(entityObtained)!=undefined&&JSON.stringify(clientNameObtained)==undefined&&JSON.stringify(timeRangeObtained)==undefined){
                         console.log("When cash flow type entered");
                         var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
                       }
-                      else if(JSON.stringify(entityObtained)!=null&&JSON.stringify(clientNameObtained)!=null&&JSON.stringify(timeRangeObtained)==null){
+                      else if(JSON.stringify(entityObtained)!=undefined&&JSON.stringify(clientNameObtained)!=undefined&&JSON.stringify(timeRangeObtained)==undefined){
                         console.log("When cash flow type and client Name entered");
                         var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
                       }
