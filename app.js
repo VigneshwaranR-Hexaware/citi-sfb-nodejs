@@ -198,7 +198,7 @@ bot.dialog('/', intents);
                       }
                       else
                       {
-
+                          var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
                           var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
 
                           session.send(prompt);
