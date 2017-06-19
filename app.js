@@ -142,7 +142,7 @@ bot.dialog('/', intents);
                           }
                           console.log(columnString);
 
-                          var responseString="This is a "+reportNameDetail+" for the respective "+arrayString+" from Citi for its clients. These are t";
+                          var responseString="This is a "+reportNameDetail+" for the respective "+arrayString+" from Citi for its clients.";
                           console.log(responseString);
                           console.log("SESSION");
 
