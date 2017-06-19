@@ -204,7 +204,7 @@ bot.dialog('/', intents);
                           var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
                           var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
                           var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
-                          if(entityObtained!=undefined&&entityObtained===undefined&&timeRangeObtained===undefined){
+                          if(entityObtained!=undefined&&clientNameObtained===undefined&&timeRangeObtained===undefined){
                             global.entityObtained = entityObtained;
                             console.log("entityObtained Saved : "+JSON.stringify(global.entityObtained));
                             session.send(prompt);
@@ -216,7 +216,7 @@ bot.dialog('/', intents);
                             session.send(prompt);
                           //  session.send(prompt);
                           }
-                          else if(timeRangeObtained!=undefined&&entityObtained!=undefined&&timeRangeObtained!=undefined){
+                          else if(timeRangeObtained!=undefined&&entityObtained!=undefined&&clientNameObtained!=undefined){
                             global.timeRangeObtained = timeRangeObtained;
                             console.log("timeRangeObtained Saved : "+JSON.stringify(global.timeRangeObtained));
                             //session.send(prompt);
