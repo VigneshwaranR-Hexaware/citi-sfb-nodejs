@@ -127,22 +127,22 @@ bot.dialog('/', intents);
                            var columnContainer=[];
                            var columnString="";
 
-                            var metricsLength=JSON.parse(body).result.definition.metrics.length;//Put JSON parse
+                            var metricsLength=body.result.definition.metrics.length;//Put JSON parse
                             console.log("Metrics Length : "+metricsLength);
 
 
                           for(var i=0;i<metricsLength;i++){
-                              var metricsParams = JSON.parse(body).result.definition.metrics[i].name.substring(JSON.parse(body).result.definition.metrics[i].name.indexOf(".")+1);
+                              var metricsParams = body.result.definition.metrics[i].name.substring(body.result.definition.metrics[i].name.indexOf(".")+1);
                               metricsParams=metricsParams.charAt(0).toUpperCase() + metricsParams.slice(1);
 
                               columnContainer.push(metricsParams);
-                              columnString=columnString+''+metricsParams+'\"n';
+                              columnString=columnString+""+metricsParams+"\n";
 
 
                           }
                           console.log(columnString);
 
-                          var responseString="This is a "+reportNameDetail+" for the \n\nrespective "+arrayString+" from Citi for its clients.";
+                          var responseString="This is a "+reportNameDetail+" for the respective "+arrayString+" from Citi for its clients. These are t";
                           console.log(responseString);
                           console.log("SESSION");
 
@@ -166,20 +166,6 @@ bot.dialog('/', intents);
                         //startNewConversation(savedAddress);
                   }
                 ]);//Welcome Intent Fired
-
-      intents.matches('SatisfactoryIntent', [
-                    function (session, args) {
-                      //global.verifyFlag=0;
-                       //session.send('Inquiry Intent Called API.AI', session.message.text);
-                       console.log("Satisfactory Intent Fired");
-                       console.log("Args : "+JSON.stringify(args));
-                        //console.log("New Conversation Intent Called 1.0");
-                        var responseString="You're Welcome. Thanks";
-                        session.send(responseString);
-                        //global.savedAddress = session.message.address;
-                        //startNewConversation(savedAddress);
-                  }
-                ]);//Satisfactory Intent Fired
 
       intents.matches('CapabilitiesIntent', [
                     function (session, args) {
