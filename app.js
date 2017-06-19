@@ -200,7 +200,7 @@ bot.dialog('/', intents);
                       {
                           var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
                           var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
-
+                          var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
                           session.send(prompt);
                           //Send prompt
                       }
