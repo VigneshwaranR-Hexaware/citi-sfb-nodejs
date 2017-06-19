@@ -185,7 +185,7 @@ bot.dialog('/', intents);
                       console.log("Report Specific Data Intent Called");
                       console.log("Args : "+JSON.stringify(args));
                       var prompt = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
-                      prompt=clientNamePrompt.entity;
+                      prompt=prompt.entity;
                       console.log("Prompt : "+prompt);
 
                       if(prompt==='Specific Response Fulfilled'){
