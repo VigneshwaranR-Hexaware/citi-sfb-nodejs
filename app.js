@@ -184,15 +184,21 @@ bot.dialog('/', intents);
                     function (session, args) {
                       console.log("Report Specific Data Intent Called");
                       console.log("Args : "+JSON.stringify(args));
+                      var prompt = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
+                      prompt=clientNamePrompt.entity;
+                      console.log("Prompt : "+prompt);
 
-                      var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
-                      var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
-                      var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
+                      if(prompt==='Specific Response Fulfilled'){
 
-                      var clientNamePrompt = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
-                      clientNamePrompt=clientNamePrompt.entity;
-                      
-                      console.log("Client Name Prompt : "+JSON.stringify(clientNamePrompt));
+                          var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
+                          var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
+                          var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
+
+                      }
+                      else
+                      {
+                          session.send(prompt);
+                      }
                       // var timeRangePrompt = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
                       // console.log("Time Range : Prompt "+JSON.stringify(timeRangePrompt));
                       // var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
