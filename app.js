@@ -207,19 +207,22 @@ bot.dialog('/', intents);
                           if(entityObtained){
                             global.entityObtained = entityObtained;
                             console.log("entityObtained Saved");
+                            session.send(prompt);
                           //  session.send(prompt);
                           }
                           else if(clientNameObtained){
                             global.clientNameObtained = clientNameObtained;
                             console.log("clientNameObtained Saved");
+                            session.send(prompt);
                           //  session.send(prompt);
                           }
                           else if(timeRangeObtained){
                             global.timeRangeObtained = timeRangeObtained;
                             console.log("timeRangeObtained Saved");
+                            session.send(prompt);
                           //  session.send(prompt);
                           }
-                          session.send(prompt);
+
                           //Send prompt
                       }
                       // var timeRangePrompt = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
