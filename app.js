@@ -190,9 +190,9 @@ bot.dialog('/', intents);
                       var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
 
                       var clientNamePrompt = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
-                      console.log("Client Name : "+clientNamePrompt);
+                      console.log("Client Name Prompt : "+clientNamePrompt);
                       var timeRangePrompt = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
-                      console.log("Client Name : "+timeRangePrompt);
+                      console.log("Time Range : Prompt "+timeRangePrompt);
                       // var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
 
 
