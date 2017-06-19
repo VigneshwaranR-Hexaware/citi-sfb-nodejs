@@ -187,22 +187,28 @@ bot.dialog('/', intents);
                       var prompt = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
                       prompt=prompt.entity;
                       console.log("Prompt : "+prompt);
+                      //Save fulfillment messages
 
                       if(prompt==='Specific Response Fulfilled'){
 
                           var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
                           var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
                           var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
-
+                          //All recieved
                       }
                       else
                       {
+
+                          var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
+
                           session.send(prompt);
+                          //Send prompt
                       }
                       // var timeRangePrompt = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
                       // console.log("Time Range : Prompt "+JSON.stringify(timeRangePrompt));
                       // var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
 
+                      console.log("entityObtained : "+entityObtained+" , clientNameObtained : "+clientNameObtained+" , timeRangeObtained : "+timeRangeObtained);
 
                       if(entityObtained&&clientNameObtained&&timeRangeObtained){
 
