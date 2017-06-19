@@ -208,38 +208,41 @@ bot.dialog('/', intents);
                       // console.log("Time Range : Prompt "+JSON.stringify(timeRangePrompt));
                       // var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
 
-                      console.log("entityObtained : "+JSON.stringify(entityObtained)+" , clientNameObtained : "+JSON.stringify(clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(timeRangeObtained));
+                      console.log("entityObtained : "+JSON.stringify(global.entityObtained)+" , clientNameObtained : "+JSON.stringify(global.clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(global.timeRangeObtained));
 
-                      if(JSON.stringify(entityObtained)==undefined&&JSON.stringify(clientNameObtained)==undefined&&JSON.stringify(timeRangeObtained)==undefined){
+                      if(JSON.stringify(global.entityObtained)==undefined&&JSON.stringify(global.clientNameObtained)==undefined&&JSON.stringify(global.timeRangeObtained)==undefined){
                         console.log("When all Null");
                         var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
+                        global.entityObtained=entityObtained;
                       }
-                      else if(JSON.stringify(entityObtained)!=undefined&&JSON.stringify(clientNameObtained)==undefined&&JSON.stringify(timeRangeObtained)==undefined){
+                      else if(JSON.stringify(global.entityObtained)!=undefined&&JSON.stringify(global.clientNameObtained)==undefined&&JSON.stringify(global.timeRangeObtained)==undefined){
                         console.log("When cash flow type entered");
                         var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
+                        global.clientNameObtained=clientNameObtained;
                       }
-                      else if(JSON.stringify(entityObtained)!=undefined&&JSON.stringify(clientNameObtained)!=undefined&&JSON.stringify(timeRangeObtained)==undefined){
+                      else if(JSON.stringify(global.entityObtained)!=undefined&&JSON.stringify(global.clientNameObtained)!=undefined&&JSON.stringify(global.timeRangeObtained)==undefined){
                         console.log("When cash flow type and client Name entered");
                         var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
+                        global.timeRangeObtained=timeRangeObtained;
                       }
 
-                      if(entityObtained&&clientNameObtained&&timeRangeObtained){
+                      if(global.entityObtained&&global.clientNameObtained&&global.timeRangeObtained){
 
                         console.log("All Entities Recieved as Input from User");
-                        console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
-                        var entityValue=entityObtained.entity;
+                        console.log("Data Specific Entity Lot : "+JSON.stringify(global.entityObtained));
+                        var entityValue=global.entityObtained.entity;
                         global.entityValueHere=entityValue;
                         console.log("Data Specific Entity Value : "+entityValue);
                           //Entity Value Obtained
 
 
-                        var clientName=clientNameObtained.entity;
+                        var clientName=global.clientNameObtained.entity;
                         console.log("Client Name Obtained : "+clientName);
                         global.clientName=clientName;
                         //Client Name Obtained
 
 
-                        var timeRangeInput=timeRangeObtained.entity;
+                        var timeRangeInput=global.timeRangeObtained.entity;
                         console.log("Custom Time Range : "+timeRangeInput.slice(0,4));
                         global.timeRangeInput=timeRangeInput.slice(0,4);
 
