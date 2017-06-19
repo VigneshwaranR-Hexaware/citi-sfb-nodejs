@@ -216,7 +216,7 @@ bot.dialog('/', intents);
                             session.send(prompt);
                           //  session.send(prompt);
                           }
-                          else if(timeRangeObtained!=undefined&&entityObtained!=undefined&&clientNameObtained!=undefined){
+                          else if(timeRangeObtained&&entityObtained&&clientNameObtained){
                             global.timeRangeObtained = timeRangeObtained;
                             console.log("timeRangeObtained Saved : "+JSON.stringify(global.timeRangeObtained));
                             //session.send(prompt);
