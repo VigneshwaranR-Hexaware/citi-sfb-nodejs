@@ -198,9 +198,9 @@ bot.dialog('/', intents);
                       }
                       else
                       {
-                          var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
-                          var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
-                          var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
+                          // var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
+                          // var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
+                          // var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
                           session.send(prompt);
                           //Send prompt
                       }
@@ -209,6 +209,19 @@ bot.dialog('/', intents);
                       // var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
 
                       console.log("entityObtained : "+JSON.stringify(entityObtained)+" , clientNameObtained : "+JSON.stringify(clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(timeRangeObtained));
+
+                      if(JSON.stringify(entityObtained)==null&&JSON.stringify(clientNameObtained)==null&&JSON.stringify(timeRangeObtained)==null){
+                        console.log("When all Null");
+                        var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
+                      }
+                      else if(JSON.stringify(entityObtained)!=null&&JSON.stringify(clientNameObtained)==null&&JSON.stringify(timeRangeObtained)==null){
+                        console.log("When cash flow type entered");
+                        var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
+                      }
+                      else if(JSON.stringify(entityObtained)!=null&&JSON.stringify(clientNameObtained)!=null&&JSON.stringify(timeRangeObtained)==null){
+                        console.log("When cash flow type and client Name entered");
+                        var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
+                      }
 
                       if(entityObtained&&clientNameObtained&&timeRangeObtained){
 
