@@ -241,18 +241,15 @@ bot.dialog('/', intents);
                               var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
                                   console.log("Data Specific Entity Lot : "+JSON.stringify(clientNameObtained));
                                   global.clientNameObtained=clientNameObtained;
-                                  var clientName=clientNameObtained.entity;
-                                  console.log("Client Name Obtained : "+clientName);
-                                  global.clientName=clientName;
+
+
                                       //Client Name Obtained and Ready
                             }
                             else if(!global.timeRangeObtained){
                               var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
                               console.log("Time Entity Lot : "+JSON.stringify(timeRangeObtained));
                                   global.timeRangeObtained=timeRangeObtained;
-                                  var timeRangeInput=timeRangeObtained.entity;
-                                  console.log("Custom Time Range : "+timeRangeInput.slice(0,4));
-                                  global.timeRangeInput=timeRangeInput.slice(0,4);
+
                                     //Time Range Obtained and Ready
                             }
 
@@ -264,9 +261,18 @@ bot.dialog('/', intents);
                         console.log("entityObtained : "+JSON.stringify(global.entityObtained)+" , clientNameObtained : "+JSON.stringify(global.clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(global.timeRangeObtained));
 
                         if(global.entityObtained&&global.clientNameObtained&&global.timeRangeObtained){
+
                           var entityValue=global.entityObtained.entity;
                           global.entityValueHere=entityValue;
                           console.log("Data Specific Entity Value : "+entityValue);
+
+                          var clientName=clientNameObtained.entity;
+                          console.log("Client Name Obtained : "+clientName);
+                          global.clientName=clientName;
+
+                          var timeRangeInput=timeRangeObtained.entity;
+                          console.log("Custom Time Range : "+timeRangeInput.slice(0,4));
+                          global.timeRangeInput=timeRangeInput.slice(0,4);
 
                         var options = { method: 'POST',
                           url: 'http://52.3.221.183:1234/json-data-api/sessions',
