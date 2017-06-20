@@ -226,32 +226,37 @@ bot.dialog('/', intents);
                         var timeRangeInput=timeRangeObtained.entity;
                         console.log("Custom Time Range : "+timeRangeInput.slice(0,4));
                         global.timeRangeInput=timeRangeInput.slice(0,4);
+
                         }
                         else{
                             console.log("Slot Values Missing");
-                            if(!global.entityObtained&&!global.clientNameObtained&&!global.timeRangeObtained){
-                              console.log("All Slot Values Missing");
-                              //session.send(prompt);
-                              //Send prompt
-                            }
-                            else if(global.entityObtained&&!global.clientNameObtained&&!global.timeRangeObtained){
-                              console.log("entityObtained Present, Prompt for clientName");
-                              var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
-                              global.entityObtained=entityObtained;
 
-                              //session.send(prompt);
-                              //Send prompt
-                            }
-                            else if(global.entityObtained&&global.clientNameObtained&&!global.timeRangeObtained){
-                              console.log("entityObtained and clientNameObtained, Prompt for Time Range");
-                              var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
-                              global.clientNameObtained=clientNameObtained;
+                                if(!global.entityObtained || !global.clientNameObtained || !global.timeRangeObtained){
+                                        console.log("One or more values missing");
+                                        if(!global.entityObtained){
 
-                              //session.send(prompt);
-                              //Send Prompt
+                                          console.log("global.entityObtained is present");
+                                          console.log(JSON.stringify(global.entityObtained));
+                                          var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
+                                          global.entityObtained=entityObtained;
 
+                                        }
+                                        else if(!global.clientNameObtained){
+                                          console.log("global.clientNameObtained is present");
+                                          console.log(JSON.stringify(global.clientNameObtained));
+                                          var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
+                                          global.clientNameObtained=clientNameObtained;
+
+                                        }
+                                        else if(!global.timeRangeObtained){
+                                          console.log("global.clientNameObtained is present");
+                                          console.log(JSON.stringify(global.timeRangeObtained));
+                                          var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
+                                          global.timeRangeObtained=timeRangeObtained;
+
+                                        }
+                                }  
                         }
-                      }
                         // var entityValueHere='cash and cash equivalents';
                         // global.entityValueHere=entityValueHere;
 
