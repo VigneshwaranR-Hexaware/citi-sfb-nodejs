@@ -231,7 +231,7 @@ bot.dialog('/', intents);
                             console.log("Slot Values Missing");
                             if(!global.entityObtained&&!global.clientNameObtained&&!global.timeRangeObtained){
                               console.log("All Slot Values Missing");
-                              session.send(prompt);
+                              //session.send(prompt);
                               //Send prompt
                             }
                             else if(global.entityObtained&&!global.clientNameObtained&&!global.timeRangeObtained){
@@ -239,7 +239,7 @@ bot.dialog('/', intents);
                               var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
                               global.entityObtained=entityObtained;
 
-                              session.send(prompt);
+                              //session.send(prompt);
                               //Send prompt
                             }
                             else if(global.entityObtained&&global.clientNameObtained&&!global.timeRangeObtained){
@@ -247,7 +247,7 @@ bot.dialog('/', intents);
                               var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
                               global.clientNameObtained=clientNameObtained;
 
-                              session.send(prompt);
+                              //session.send(prompt);
                               //Send Prompt
 
                         }
@@ -303,6 +303,7 @@ bot.dialog('/', intents);
                        }
                        else{
                          console.log("All values not recieved so not passing");
+                         session.send(prompt);
                        }
 
 
