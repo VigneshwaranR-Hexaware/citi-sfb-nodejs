@@ -190,90 +190,43 @@ bot.dialog('/', intents);
                       //Save fulfillment messages
 
                       var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
-                      global.entityObtained=entityObtained;
+                      //global.entityObtained=entityObtained;
                       var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
-                      global.clientNameObtained=clientNameObtained;
+                      //global.clientNameObtained=clientNameObtained;
                       var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
-                      global.timeRangeObtained=timeRangeObtained;
+                      //global.timeRangeObtained=timeRangeObtained;
                       //All recieved
                       console.log("Value Initialization");
 
-                      // if(prompt==='Specific Response Fulfilled'){
-                      //     //var responseTypeFlag=1;
-                      //
-                      // }
-
-
-
-
-
-                      if(entityObtained&&clientNameObtained&&timeRangeObtained){
-                        //All Values have come in
+                      if(prompt==='Specific Response Fulfilled'){
                         console.log("All Entities Recieved as Input from User");
                         console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
+                        global.entityObtained=entityObtained;
                         var entityValue=entityObtained.entity;
                         global.entityValueHere=entityValue;
                         console.log("Data Specific Entity Value : "+entityValue);
-                        //Entity Value Obtained
+                        //Entity Value Obtained and Ready
 
-
+                        console.log("Data Specific Entity Lot : "+JSON.stringify(clientNameObtained));
+                        global.clientNameObtained=clientNameObtained;
                         var clientName=clientNameObtained.entity;
                         console.log("Client Name Obtained : "+clientName);
                         global.clientName=clientName;
-                        //Client Name Obtained
+                        //Client Name Obtained and Ready
 
-
+                        console.log("Time Entity Lot : "+JSON.stringify(timeRangeObtained));
+                        global.timeRangeObtained=timeRangeObtained;
                         var timeRangeInput=timeRangeObtained.entity;
                         console.log("Custom Time Range : "+timeRangeInput.slice(0,4));
                         global.timeRangeInput=timeRangeInput.slice(0,4);
-                        //Time Range Obtained
+                        //Time Range Obtained and Ready
 
-                        }
-                        else{
+                      }//FOR DIRECT ANSWERS WITH ALL 3 SLOTS FULFUILLED AT ONE GO
+
+                      else{
                             console.log("Slot Values Missing");
-
-                                if(!global.entityObtained || !global.clientNameObtained || !global.timeRangeObtained){
-                                        console.log("One or more values missing");
-
-
-                                        // if(!global.entityObtained){
-                                        //
-                                        //   console.log("global.entityObtained is present");
-                                        //   console.log(JSON.stringify(global.entityObtained));//null
-                                        //   var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
-                                        //   global.entityObtained=entityObtained;
-                                        //
-                                        //   var entityValue=entityObtained.entity;
-                                        //   global.entityValueHere=entityValue;
-                                        //
-                                        // }
-                                        // else if(!global.clientNameObtained){
-                                        //   console.log("global.clientNameObtained is present");
-                                        //   console.log(JSON.stringify(global.clientNameObtained));
-                                        //   var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
-                                        //   global.clientNameObtained=clientNameObtained;
-                                        //
-                                        //   var clientName=clientNameObtained.entity;
-                                        //   console.log("Client Name Obtained : "+clientName);
-                                        //   global.clientName=clientName;
-                                        //
-                                        // }
-                                        // else if(!global.timeRangeObtained){
-                                        //   console.log("global.clientNameObtained is present");
-                                        //   console.log(JSON.stringify(global.timeRangeObtained));
-                                        //   var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
-                                        //   global.timeRangeObtained=timeRangeObtained;
-                                        //
-                                        //   var timeRangeInput=timeRangeObtained.entity;
-                                        //   console.log("Custom Time Range : "+timeRangeInput.slice(0,4));
-                                        //   global.timeRangeInput=timeRangeInput.slice(0,4);
-                                        //
-                                        // }
-                                }
+                            
                         }
-                        // var entityValueHere='cash and cash equivalents';
-                        // global.entityValueHere=entityValueHere;
-
 
                         var reportId='EA8836BF451BF05F9B9A08A9D2EB44C2';
                         global.reportId=reportId;
@@ -310,8 +263,11 @@ bot.dialog('/', intents);
                               session.send(responseString);
                               session.endDialog();
                               global.entityObtained=undefined;
+                              console.log("Reinitialize Global.entityObtained = "+global.entityObtained);
                               global.clientNameObtained=undefined;
+                              console.log("Reinitialize Global.clientNameObtained = "+global.clientNameObtained);
                               global.timeRangeObtained=undefined;
+                              console.log("Reinitialize Global.timeRangeObtained = "+global.timeRangeObtained);
                               //Reinitialize
                               console.log("Global Variables Reinitialized");
 
