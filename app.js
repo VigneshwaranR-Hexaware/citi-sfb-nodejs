@@ -232,9 +232,9 @@ bot.dialog('/', intents);
                               var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
                                   console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
                                   global.entityObtained=entityObtained;
-                                  var entityValue=entityObtained.entity;
-                                  global.entityValueHere=entityValue;
-                                  console.log("Data Specific Entity Value : "+entityValue);
+                                  // var entityValue=entityObtained.entity;
+                                  // global.entityValueHere=entityValue;
+                                  //console.log("Data Specific Entity Value : "+entityValue);
                                     //Entity Value Obtained and Ready
                             }
                             else if(!global.clientNameObtained){
@@ -264,6 +264,9 @@ bot.dialog('/', intents);
                         console.log("entityObtained : "+JSON.stringify(global.entityObtained)+" , clientNameObtained : "+JSON.stringify(global.clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(global.timeRangeObtained));
 
                         if(global.entityObtained&&global.clientNameObtained&&global.timeRangeObtained){
+                          var entityValue=entityObtained.entity;
+                          global.entityValueHere=entityValue;
+                          console.log("Data Specific Entity Value : "+entityValue);
 
                         var options = { method: 'POST',
                           url: 'http://52.3.221.183:1234/json-data-api/sessions',
