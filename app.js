@@ -315,6 +315,12 @@ bot.dialog('/', intents);
 
                               callback(responseString);
 
+                              global.entityObtained=0;
+                              global.clientNameObtained=0;
+                              global.timeRangeObtained=0;
+                              //Reinitialize
+                              console.log("Global Variables Reinitialized");
+
                             });
                         }
                       }
