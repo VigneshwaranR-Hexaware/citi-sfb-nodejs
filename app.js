@@ -296,7 +296,7 @@ bot.dialog('/', intents);
                           //Get Report
 
                          });
-                        }
+                        
 
                         function generateReportSpecificData(authTokenRecieved, entityValueHere, callback){
 
