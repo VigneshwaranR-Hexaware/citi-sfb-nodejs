@@ -266,11 +266,11 @@ bot.dialog('/', intents);
                           global.entityValueHere=entityValue;
                           console.log("Data Specific Entity Value : "+entityValue);
 
-                          var clientName=clientNameObtained.entity;
+                          var clientName=global.clientNameObtained.entity;
                           console.log("Client Name Obtained : "+clientName);
                           global.clientName=clientName;
 
-                          var timeRangeInput=timeRangeObtained.entity;
+                          var timeRangeInput=global.timeRangeObtained.entity;
                           console.log("Custom Time Range : "+timeRangeInput.slice(0,4));
                           global.timeRangeInput=timeRangeInput.slice(0,4);
 
