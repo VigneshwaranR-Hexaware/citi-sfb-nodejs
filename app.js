@@ -196,6 +196,7 @@ bot.dialog('/', intents);
                       var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
                       global.timeRangeObtained=timeRangeObtained;
                       //All recieved
+                      console.log("Value Initialization");
 
                       // if(prompt==='Specific Response Fulfilled'){
                       //     //var responseTypeFlag=1;
@@ -257,7 +258,9 @@ bot.dialog('/', intents);
                         var reportId='EA8836BF451BF05F9B9A08A9D2EB44C2';
                         global.reportId=reportId;
 
-                          console.log("entityObtained : "+JSON.stringify(global.entityObtained)+" , clientNameObtained : "+JSON.stringify(global.clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(global.timeRangeObtained));
+                        console.log("entityObtained : "+JSON.stringify(global.entityObtained)+" , clientNameObtained : "+JSON.stringify(global.clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(global.timeRangeObtained));
+
+                        if(prompt==='Specific Response Fulfilled'){
 
                         var options = { method: 'POST',
                           url: 'http://52.3.221.183:1234/json-data-api/sessions',
@@ -296,6 +299,10 @@ bot.dialog('/', intents);
                           //Get Report
 
                          });
+                       }
+                       else{
+                         console.log("All values not recieved so not passing");
+                       }
 
 
                         function generateReportSpecificData(authTokenRecieved, entityValueHere, callback){
