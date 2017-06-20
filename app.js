@@ -222,7 +222,7 @@ bot.dialog('/', intents);
                           //session.send(prompt);
                         }
                       }
-                      console.log("entityObtained : "+JSON.stringify(entityObtained)+" , clientNameObtained : "+JSON.stringify(clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(timeRangeObtained));
+                      console.log("entityObtained : "+JSON.stringify(global.entityObtained)+" , clientNameObtained : "+JSON.stringify(global.clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(global.timeRangeObtained));
 
                       if(entityObtained&&clientNameObtained&&timeRangeObtained){
 
