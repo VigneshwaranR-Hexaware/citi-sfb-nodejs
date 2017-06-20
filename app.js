@@ -158,10 +158,19 @@ bot.dialog('/', intents);
                       //global.verifyFlag=0;
                        //session.send('Inquiry Intent Called API.AI', session.message.text);
                        console.log("Welcome Intent Fired");
+                       //console.log("Session : "+session);
                        console.log("Args : "+JSON.stringify(args));
                         //console.log("New Conversation Intent Called 1.0");
-                        var responseString="Hi there. I am Citi Assistant. How can I help you?"
-                        session.send(responseString);
+                        var msg = new builder.Message(session)
+                            .addAttachment({
+                                contentUrl: 'https://docs.botframework.com/en-us/images/faq-overview/botframework_overview_july.png',
+                                contentType: 'image/png',
+                                name: 'BotFrameworkOverview.png'
+                            });
+
+                        session.send(msg);
+                        //var responseString="Hi there. I am Citi Assistant. How can I help you?"
+                        //session.send(responseString);
                         //global.savedAddress = session.message.address;
                         //startNewConversation(savedAddress);
                   }
