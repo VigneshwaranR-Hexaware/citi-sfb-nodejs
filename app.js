@@ -264,7 +264,7 @@ bot.dialog('/', intents);
                         console.log("entityObtained : "+JSON.stringify(global.entityObtained)+" , clientNameObtained : "+JSON.stringify(global.clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(global.timeRangeObtained));
 
                         if(global.entityObtained&&global.clientNameObtained&&global.timeRangeObtained){
-                          var entityValue=entityObtained.entity;
+                          var entityValue=global.entityObtained.entity;
                           global.entityValueHere=entityValue;
                           console.log("Data Specific Entity Value : "+entityValue);
 
