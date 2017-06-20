@@ -165,7 +165,7 @@ bot.dialog('/', intents);
                             .addAttachment({
                                 contentUrl: 'https://s3.amazonaws.com/hybrid-hdfc-nodejs-bucket/hdfc-life/brochure/click2protect/HDFC-Click2protect-Plus-brochure.pdf',
                                 contentType: 'application/pdf',
-                                name: 'BotFrameworkOverview.png'
+                                name: 'Brochure.pdf'
                             });
 
                         session.send(msg);
