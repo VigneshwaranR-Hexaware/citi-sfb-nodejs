@@ -190,11 +190,11 @@ bot.dialog('/', intents);
                       //Save fulfillment messages
 
                       var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
-                      global.entityObtained=entityObtained;
+                      //global.entityObtained=entityObtained;
                       var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
-                      global.clientNameObtained=clientNameObtained;
+                      //global.clientNameObtained=clientNameObtained;
                       var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
-                      global.timeRangeObtained=timeRangeObtained;
+                      //global.timeRangeObtained=timeRangeObtained;
                       //All recieved
                       console.log("Value Initialization");
 
