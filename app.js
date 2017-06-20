@@ -225,7 +225,32 @@ bot.dialog('/', intents);
 
                       else{
                             console.log("Slot Values Missing");
-                            
+
+                            if(global.entityObtained!=undefined){
+                                  console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
+                                  global.entityObtained=entityObtained;
+                                  var entityValue=entityObtained.entity;
+                                  global.entityValueHere=entityValue;
+                                  console.log("Data Specific Entity Value : "+entityValue);
+                                    //Entity Value Obtained and Ready
+                            }
+                            else if(global.clientNameObtained!=undefined){
+                                  console.log("Data Specific Entity Lot : "+JSON.stringify(clientNameObtained));
+                                  global.clientNameObtained=clientNameObtained;
+                                  var clientName=clientNameObtained.entity;
+                                  console.log("Client Name Obtained : "+clientName);
+                                  global.clientName=clientName;
+                                      //Client Name Obtained and Ready
+                            }
+                            else if(global.timeRangeObtained){
+                              console.log("Time Entity Lot : "+JSON.stringify(timeRangeObtained));
+                                  global.timeRangeObtained=timeRangeObtained;
+                                  var timeRangeInput=timeRangeObtained.entity;
+                                  console.log("Custom Time Range : "+timeRangeInput.slice(0,4));
+                                  global.timeRangeInput=timeRangeInput.slice(0,4);
+                                    //Time Range Obtained and Ready
+                            }
+
                         }
 
                         var reportId='EA8836BF451BF05F9B9A08A9D2EB44C2';
