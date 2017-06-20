@@ -207,7 +207,7 @@ bot.dialog('/', intents);
 
 
 
-                      if(prompt==='Specific Response Fulfilled'){
+                      if(entityObtained&&clientNameObtained&&timeRangeObtained){
 
                         console.log("All Entities Recieved as Input from User");
                         console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
@@ -228,7 +228,7 @@ bot.dialog('/', intents);
                         global.timeRangeInput=timeRangeInput.slice(0,4);
                         }
                         else{
-
+                            console.log("Slot Values Missing");
                             if(!global.entityObtained&&!global.clientNameObtained&&!global.timeRangeObtained){
                               session.send(prompt);
                               //Send prompt
