@@ -167,6 +167,20 @@ bot.dialog('/', intents);
                   }
                 ]);//Welcome Intent Fired
 
+    intents.matches('SatisfactoryIntent', [
+                  function (session, args) {
+                    //global.verifyFlag=0;
+                     //session.send('Inquiry Intent Called API.AI', session.message.text);
+                     console.log("Satisfactory Intent Fired");
+                     console.log("Args : "+JSON.stringify(args));
+                      //console.log("New Conversation Intent Called 1.0");
+                      var responseString="You're welcome."
+                      session.send(responseString);
+                      //global.savedAddress = session.message.address;
+                      //startNewConversation(savedAddress);
+                }
+              ]);//Satisfactory Intent Fired
+
       intents.matches('CapabilitiesIntent', [
                     function (session, args) {
                        //session.send('Inquiry Intent Called API.AI', session.message.text);
