@@ -163,8 +163,8 @@ bot.dialog('/', intents);
                         //console.log("New Conversation Intent Called 1.0");
                         var msg = new builder.Message(session)
                             .addAttachment({
-                                contentUrl: 'https://docs.botframework.com/en-us/images/faq-overview/botframework_overview_july.png',
-                                contentType: 'image/png',
+                                contentUrl: 'https://s3.amazonaws.com/hybrid-hdfc-nodejs-bucket/hdfc-life/brochure/click2protect/HDFC-Click2protect-Plus-brochure.pdf',
+                                contentType: 'application/pdf',
                                 name: 'BotFrameworkOverview.png'
                             });
 
