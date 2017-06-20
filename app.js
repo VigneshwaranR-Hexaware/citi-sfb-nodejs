@@ -260,7 +260,7 @@ bot.dialog('/', intents);
 
                         console.log("entityObtained : "+JSON.stringify(global.entityObtained)+" , clientNameObtained : "+JSON.stringify(global.clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(global.timeRangeObtained));
 
-                        if(prompt==='Specific Response Fulfilled'){
+                        if(global.entityObtained&&global.clientNameObtained&&global.timeRangeObtained){
 
                         var options = { method: 'POST',
                           url: 'http://52.3.221.183:1234/json-data-api/sessions',
