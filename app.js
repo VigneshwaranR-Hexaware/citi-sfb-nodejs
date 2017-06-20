@@ -230,6 +230,7 @@ bot.dialog('/', intents);
                         else{
                             console.log("Slot Values Missing");
                             if(!global.entityObtained&&!global.clientNameObtained&&!global.timeRangeObtained){
+                              console.log("All Slot Values Missing");
                               session.send(prompt);
                               //Send prompt
                             }
