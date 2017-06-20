@@ -201,7 +201,23 @@ bot.dialog('/', intents);
                       }
 
                       else{
-                        session.send(prompt);
+                        if(!entityObtained&&!clientNameObtained&&!timeRangeObtained){
+                          console.log("No Values Present. Prompt for entityObtained");
+                          var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
+                          session.send(prompt);
+                        }
+                        else if(entityObtained&&!clientNameObtained&&!timeRangeObtained){
+                          console.log("entityObtained Present, Prompt for clientName");
+                          var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
+                          session.send(prompt);
+                        }
+                        else if(entityObtained&&clientNameObtained&&!timeRangeObtained){
+                          console.log("entityObtained and clientNameObtained, Prompt for Time Range");
+                          var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
+                          //session.send(prompt);
+                        }
+
+
                       }
                       // else
                       // {
