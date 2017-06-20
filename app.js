@@ -229,6 +229,7 @@ bot.dialog('/', intents);
                             console.log("Slot Values Missing");
 
                             if(!global.entityObtained){
+                              var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
                                   console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
                                   global.entityObtained=entityObtained;
                                   var entityValue=entityObtained.entity;
@@ -237,6 +238,7 @@ bot.dialog('/', intents);
                                     //Entity Value Obtained and Ready
                             }
                             else if(!global.clientNameObtained){
+                              var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
                                   console.log("Data Specific Entity Lot : "+JSON.stringify(clientNameObtained));
                                   global.clientNameObtained=clientNameObtained;
                                   var clientName=clientNameObtained.entity;
@@ -245,6 +247,7 @@ bot.dialog('/', intents);
                                       //Client Name Obtained and Ready
                             }
                             else if(!global.timeRangeObtained){
+                              var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
                               console.log("Time Entity Lot : "+JSON.stringify(timeRangeObtained));
                                   global.timeRangeObtained=timeRangeObtained;
                                   var timeRangeInput=timeRangeObtained.entity;
