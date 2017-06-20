@@ -280,9 +280,9 @@ bot.dialog('/', intents);
                               //console.log("savedAddress : "+savedAddress);
                               session.send(responseString);
                               session.endDialog();
-                              global.entityObtained=0;
-                              global.clientNameObtained=0;
-                              global.timeRangeObtained=0;
+                              global.entityObtained=null;
+                              global.clientNameObtained=null;
+                              global.timeRangeObtained=null;
                               //Reinitialize
                               console.log("Global Variables Reinitialized");
 
