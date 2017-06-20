@@ -161,16 +161,16 @@ bot.dialog('/', intents);
                        //console.log("Session : "+session);
                        console.log("Args : "+JSON.stringify(args));
                         //console.log("New Conversation Intent Called 1.0");
-                        var msg = new builder.Message(session)
-                            .addAttachment({
-                                contentUrl: 'https://s3.amazonaws.com/hybrid-hdfc-nodejs-bucket/hdfc-life/brochure/click2protect/HDFC-Click2protect-Plus-brochure.pdf',
-                                contentType: 'application/pdf',
-                                name: 'Brochure.pdf'
-                            });
-
-                        session.send(msg);
-                        //var responseString="Hi there. I am Citi Assistant. How can I help you?"
-                        //session.send(responseString);
+                        // var msg = new builder.Message(session)
+                        //     .addAttachment({
+                        //         contentUrl: 'https://s3.amazonaws.com/hybrid-hdfc-nodejs-bucket/hdfc-life/brochure/click2protect/HDFC-Click2protect-Plus-brochure.pdf',
+                        //         contentType: 'application/pdf',
+                        //         name: 'Brochure.pdf'
+                        //     });
+                        //
+                        // session.send(msg);
+                        var responseString="Hi there. I am Citi Assistant. How can I help you?"
+                        session.send(responseString);
                         //global.savedAddress = session.message.address;
                         //startNewConversation(savedAddress);
                   }
