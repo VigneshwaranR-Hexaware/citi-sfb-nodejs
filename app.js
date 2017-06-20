@@ -188,6 +188,8 @@ bot.dialog('/', intents);
                       prompt=prompt.entity;
                       console.log("Prompt : "+prompt);
                       //Save fulfillment messages
+                      console.log("CARRY FORWARD : entityObtained : "+JSON.stringify(global.entityObtained)+" , clientNameObtained : "+JSON.stringify(global.clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(global.timeRangeObtained));
+                      //Carry Forward
 
                       var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
                       //global.entityObtained=entityObtained;
