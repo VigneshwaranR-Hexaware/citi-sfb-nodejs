@@ -190,7 +190,7 @@ bot.dialog('/', intents);
                       //Save fulfillment messages
 
                       if(prompt==='Specific Response Fulfilled'){
-
+                          //var responseTypeFlag=1;
                           var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
                           global.entityObtained=entityObtained;
                           var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
@@ -204,57 +204,24 @@ bot.dialog('/', intents);
                         if(!entityObtained&&!clientNameObtained&&!timeRangeObtained){
                           console.log("No Values Present. Prompt for entityObtained");
                           var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
+                          global.entityObtained=entityObtained;
                           session.send(prompt);
+                          //Send prompt
                         }
                         else if(entityObtained&&!clientNameObtained&&!timeRangeObtained){
                           console.log("entityObtained Present, Prompt for clientName");
                           var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
+                          global.clientNameObtained=clientNameObtained;
                           session.send(prompt);
+                          //Send prompt
                         }
                         else if(entityObtained&&clientNameObtained&&!timeRangeObtained){
                           console.log("entityObtained and clientNameObtained, Prompt for Time Range");
                           var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
+                          global.timeRangeObtained=timeRangeObtained;
                           //session.send(prompt);
                         }
-
-
                       }
-                      // else
-                      // {
-                      //     var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
-                      //     var clientNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'clientNamesEntity');
-                      //     var timeRangeObtained = builder.EntityRecognizer.findEntity(args.entities, 'date-period');
-                      //     if(entityObtained!=undefined&&clientNameObtained==undefined&&timeRangeObtained==undefined){
-                      //       global.entityObtained = entityObtained;
-                      //       console.log("entityObtained Saved : "+JSON.stringify(global.entityObtained));
-                      //       session.send(prompt);
-                      //     //  session.send(prompt);
-                      //     }
-                      //     else if(clientNameObtained!=undefined&&entityObtained!=undefined&&timeRangeObtained==undefined){
-                      //       global.clientNameObtained = clientNameObtained;
-                      //       global.entityObtained = entityObtained;
-                      //       console.log("clientNameObtained Saved : "+JSON.stringify(global.clientNameObtained));
-                      //       console.log("entityObtained Saved : "+JSON.stringify(global.entityObtained));
-                      //       session.send(prompt);
-                      //     //  session.send(prompt);
-                      //     }
-                      //     else if(timeRangeObtained&&entityObtained&&clientNameObtained){
-                      //       global.timeRangeObtained = timeRangeObtained;
-                      //       global.entityObtained = entityObtained;
-                      //       global.clientNameObtained = clientNameObtained;
-                      //       console.log("timeRangeObtained Saved : "+JSON.stringify(global.timeRangeObtained));
-                      //       console.log("entityObtained Saved : "+JSON.stringify(global.timeRangeObtained));
-                      //       console.log("clientNameObtained Saved : "+JSON.stringify(global.timeRangeObtained));
-                      //       //session.send(prompt);
-                      //     //  session.send(prompt);
-                      //     }
-
-                          //Send prompt
-
-                      // var timeRangePrompt = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
-                      // console.log("Time Range : Prompt "+JSON.stringify(timeRangePrompt));
-                      // var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
-
                       console.log("entityObtained : "+JSON.stringify(entityObtained)+" , clientNameObtained : "+JSON.stringify(clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(timeRangeObtained));
 
                       if(entityObtained&&clientNameObtained&&timeRangeObtained){
