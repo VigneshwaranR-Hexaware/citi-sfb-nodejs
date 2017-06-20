@@ -204,7 +204,7 @@ bot.dialog('/', intents);
 
 
 
-                      console.log("entityObtained : "+JSON.stringify(global.entityObtained)+" , clientNameObtained : "+JSON.stringify(global.clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(global.timeRangeObtained));
+
 
                       if(prompt==='Specific Response Fulfilled'){
 
@@ -257,7 +257,7 @@ bot.dialog('/', intents);
                         var reportId='EA8836BF451BF05F9B9A08A9D2EB44C2';
                         global.reportId=reportId;
 
-
+                          console.log("entityObtained : "+JSON.stringify(global.entityObtained)+" , clientNameObtained : "+JSON.stringify(global.clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(global.timeRangeObtained));
 
                         var options = { method: 'POST',
                           url: 'http://52.3.221.183:1234/json-data-api/sessions',
@@ -296,7 +296,7 @@ bot.dialog('/', intents);
                           //Get Report
 
                          });
-                        
+
 
                         function generateReportSpecificData(authTokenRecieved, entityValueHere, callback){
 
