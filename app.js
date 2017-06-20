@@ -235,7 +235,7 @@ bot.dialog('/', intents);
                       // console.log("Time Range : Prompt "+JSON.stringify(timeRangePrompt));
                       // var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
 
-                      console.log("entityObtained : "+JSON.stringify(entityObtained)+" , clientNameObtained : "+JSON.stringify(clientNameObtained)+" , timeRangeObtained : "+JSON.stringify(timeRangeObtained));
+                      console.log("entityObtained : "+entityObtained+" , clientNameObtained : "+clientNameObtained+" , timeRangeObtained : "timeRangeObtained);
 
                       if(entityObtained&&clientNameObtained&&timeRangeObtained){
 
