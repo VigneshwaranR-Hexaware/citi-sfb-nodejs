@@ -226,7 +226,7 @@ bot.dialog('/', intents);
                       else{
                             console.log("Slot Values Missing");
 
-                            if(global.entityObtained!=undefined){
+                            if(!global.entityObtained){
                                   console.log("Data Specific Entity Lot : "+JSON.stringify(entityObtained));
                                   global.entityObtained=entityObtained;
                                   var entityValue=entityObtained.entity;
@@ -234,7 +234,7 @@ bot.dialog('/', intents);
                                   console.log("Data Specific Entity Value : "+entityValue);
                                     //Entity Value Obtained and Ready
                             }
-                            else if(global.clientNameObtained!=undefined){
+                            else if(!global.clientNameObtained){
                                   console.log("Data Specific Entity Lot : "+JSON.stringify(clientNameObtained));
                                   global.clientNameObtained=clientNameObtained;
                                   var clientName=clientNameObtained.entity;
@@ -242,7 +242,7 @@ bot.dialog('/', intents);
                                   global.clientName=clientName;
                                       //Client Name Obtained and Ready
                             }
-                            else if(global.timeRangeObtained){
+                            else if(!global.timeRangeObtained){
                               console.log("Time Entity Lot : "+JSON.stringify(timeRangeObtained));
                                   global.timeRangeObtained=timeRangeObtained;
                                   var timeRangeInput=timeRangeObtained.entity;
