@@ -199,6 +199,10 @@ bot.dialog('/', intents);
                           global.timeRangeObtained=timeRangeObtained;
                           //All recieved
                       }
+
+                      else{
+                        session.send(prompt);
+                      }
                       // else
                       // {
                       //     var entityObtained = builder.EntityRecognizer.findEntity(args.entities, 'dataSpecificEntity');
@@ -230,7 +234,7 @@ bot.dialog('/', intents);
                       //     }
 
                           //Send prompt
-                      
+
                       // var timeRangePrompt = builder.EntityRecognizer.findEntity(args.entities, 'fulfillment');
                       // console.log("Time Range : Prompt "+JSON.stringify(timeRangePrompt));
                       // var projectNameObtained = builder.EntityRecognizer.findEntity(args.entities, 'projectNameEntity');
