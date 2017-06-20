@@ -200,7 +200,9 @@ bot.dialog('/', intents);
                        console.log("Report URL Intent Fired");
                        console.log("Args : "+JSON.stringify(args));
                         //console.log("New Conversation Intent Called 1.0");
-                        var responseString="Okay then. <a href=\"http://52.3.221.183:1233/MicroStrategy/servlet/mstrWeb?Server=localhost&Project=Hello+World&Port=0&uid=administrator&pwd=&evt=3069&src=mstrWeb.3069&documentID=05E61DEE4194D725DCF5CFAD63E468A9\">Click Here</a> to view the full report."
+                        //var responseString="Okay then. <a href=\"http://52.3.221.183:1233/MicroStrategy/servlet/mstrWeb?Server=localhost&Project=Hello+World&Port=0&uid=administrator&pwd=&evt=3069&src=mstrWeb.3069&documentID=05E61DEE4194D725DCF5CFAD63E468A9\">Click Here</a> to view the full report."
+
+                        var responseString="Click on the Button to get Full Report.<br><button class=\"button\" onClick=\"window.open(\"http://52.3.221.183:1233/MicroStrategy/servlet/mstrWeb?Server=localhost&Project=Hello+World&Port=0&uid=administrator&pwd=&evt=3069&src=mstrWeb.3069&documentID=05E61DEE4194D725DCF5CFAD63E468A9\");\"><span class=\"icon\">View Report</span></button>"
                         session.send(responseString);
                         //global.savedAddress = session.message.address;  <a href="https://www.w3schools.com/html/">Visit our HTML tutorial</a>
                         //startNewConversation(savedAddress);
