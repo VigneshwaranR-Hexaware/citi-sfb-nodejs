@@ -249,6 +249,7 @@ bot.dialog('/', intents);
                               //Send Prompt
 
                         }
+                      }
                         // var entityValueHere='cash and cash equivalents';
                         // global.entityValueHere=entityValueHere;
 
