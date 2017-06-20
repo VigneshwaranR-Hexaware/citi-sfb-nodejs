@@ -307,6 +307,10 @@ bot.dialog('/', intents);
                               console.log("Reinitialize Global.clientNameObtained = "+global.clientNameObtained);
                               global.timeRangeObtained=undefined;
                               console.log("Reinitialize Global.timeRangeObtained = "+global.timeRangeObtained);
+
+                              global.entityValueHere=undefined;
+                              global.clientName=undefined;
+                              global.timeRangeInput=undefined;
                               //Reinitialize
                               console.log("Global Variables Reinitialized");
 
